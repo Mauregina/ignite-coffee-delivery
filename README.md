@@ -11,7 +11,9 @@ Nesse desafio, você vai desenvolver uma aplicação para gerenciar um carrinho 
 - Exibir o total de itens no carrinho no Header
 - Exibir o valor total da soma de itens no carrinho multiplicados pelo valor
 
-Apesar de serem poucas funcionalidades, você vai precisar relembrar conceitos como:
+Para essa aplicação nós fornecemos um layout para que você possa seguir e implementar todas as funcionalidades desenhadas no figma. https://www.figma.com/file/5yT9ZzZmRQRS4yivGGB3pl/Coffee-Delivery/duplicate
+
+Conceitos praticados:
 
 - Estados
 - ContextAPI
