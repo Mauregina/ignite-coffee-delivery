@@ -1,4 +1,4 @@
-import Logo from '../../assets/logo.svg'
+import { Link } from 'react-router-dom'
 import {
   HeaderContainer,
   ActionContainer,
@@ -7,7 +7,8 @@ import {
   LocationContainer,
   MapIcon,
 } from './styles'
-import { Link } from 'react-router-dom'
+
+import Logo from '../../assets/logo.svg'
 
 export function Header() {
   return (
