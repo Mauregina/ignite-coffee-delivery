@@ -3,7 +3,7 @@ import {
   IntroContainer,
   MessageContainer,
   TitleContainer,
-  Title,
+  TitleIntro,
   Subtitle,
   ItemsContainer,
   Item,
@@ -13,8 +13,16 @@ import {
   TimerIcon,
   CoffeeIcon,
   ImgContainer,
+  CoffeeContainer,
+  CoffeeListContainer,
+  TitleCoffeeList,
+  CoffeeItemContainer,
+  InputForm,
+  ShopButton,
+  CoffeeForm,
 } from './styles'
 import Intro from '../../assets/intro.png'
+import Expresso from '../../assets/expresso.png'
 
 export function Home() {
   return (
@@ -22,7 +30,9 @@ export function Home() {
       <IntroContainer>
         <MessageContainer>
           <TitleContainer>
-            <Title>Encontre o café perfeito para qualquer hora do dia</Title>
+            <TitleIntro>
+              Encontre o café perfeito para qualquer hora do dia
+            </TitleIntro>
             <Subtitle>
               Com o Coffee Delivery você recebe seu café onde estiver, a
               qualquer hora
@@ -57,7 +67,32 @@ export function Home() {
         </MessageContainer>
         <ImgContainer src={Intro} />
       </IntroContainer>
-      <div>Coffee List</div>
+      <CoffeeContainer>
+        <TitleCoffeeList>Nossos cafés</TitleCoffeeList>
+        <CoffeeListContainer>
+          <CoffeeItemContainer>
+            <header>
+              <img src={Expresso} alt="" />
+              <span>TRADICIONAL</span>
+            </header>
+            <section>
+              <strong>Expresso tradicional</strong>
+              <span>
+                O tradicional café feito com água quente e grãos moídos
+              </span>
+            </section>
+            <CoffeeForm action="">
+              <p>
+                R$ <span>9,90</span>
+              </p>
+              <InputForm type="number" />
+              <ShopButton type="submit">
+                <ShoppingCartIcon size={22} weight="fill" />
+              </ShopButton>
+            </CoffeeForm>
+          </CoffeeItemContainer>
+        </CoffeeListContainer>
+      </CoffeeContainer>
     </HomeContainer>
   )
 }

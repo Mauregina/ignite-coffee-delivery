@@ -6,7 +6,6 @@ export const HomeContainer = styled.main`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
 `
 
 export const IntroContainer = styled.div`
@@ -32,10 +31,17 @@ export const TitleContainer = styled.div`
   padding-top: 5.875rem;
 `
 
-export const Title = styled.div`
+const Title = styled.div`
   font-family: 'Baloo 2', cursive;
   font-weight: 800;
+`
+
+export const TitleIntro = styled(Title)`
   font-size: 3rem;
+`
+
+export const TitleCoffeeList = styled(Title)`
+  font-size: 2rem;
 `
 
 export const Subtitle = styled.div`
@@ -104,4 +110,103 @@ export const CoffeeIcon = styled(Coffee)`
 
 export const ImgContainer = styled.img`
   padding: 5.75rem 0;
+`
+
+export const CoffeeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 3.375rem;
+
+  padding-top: 2rem;
+`
+
+export const CoffeeListContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: 2.5rem;
+  column-gap: 2rem;
+`
+
+export const CoffeeItemContainer = styled.div`
+  border-radius: 6px 36px;
+  border: 1px solid;
+  background-color: ${(props) => props.theme['base-card']};
+  min-width: 256px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+
+    margin-top: -1.25rem;
+
+    span {
+      background-color: ${(props) => props.theme['brand-yellow-light']};
+      color: ${(props) => props.theme['brand-yellow-dark']};
+      font-size: 0.625rem;
+      font-weight: 700;
+      padding: 0.25rem 0.5rem;
+      border-radius: 100px;
+    }
+  }
+
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    strong {
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.25rem;
+    }
+
+    span {
+      font-size: 0.875rem;
+      color: ${(props) => props.theme['base-label']};
+      text-align: center;
+      padding: 0 1.25rem;
+    }
+  }
+`
+
+export const CoffeeForm = styled.form`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.25rem 0;
+
+  p {
+    font-size: 0.875rem;
+    /* padding-right: 1.43rem; */
+  }
+
+  span {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.5rem;
+  }
+`
+
+export const InputForm = styled.input`
+  height: 2.375rem;
+  margin-right: 0.5rem;
+  margin-left: 1.43rem;
+  width: 4.5rem;
+`
+
+export const ShopButton = styled.button`
+  background-color: ${(props) => props.theme['brand-purple-dark']};
+  border-radius: 6px;
+  border: 0;
+  padding: 0.5rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
