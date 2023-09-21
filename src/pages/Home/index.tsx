@@ -1,11 +1,11 @@
 import {
   HomeContainer,
   IntroContainer,
-  MessageContainer,
+  AdvertisingContainer,
   TitleContainer,
   TitleIntro,
   Subtitle,
-  ItemsContainer,
+  AdvertisingItems,
   Item,
   IconContainer,
   ShoppingCartIcon,
@@ -20,6 +20,12 @@ import {
   InputForm,
   ShopButton,
   CoffeeForm,
+  CoffeeItemHeader,
+  CoffeeItemSection,
+  InputGroup,
+  AddSubButton,
+  PlusIcon,
+  MinusIcon,
 } from './styles'
 import Intro from '../../assets/intro.png'
 import Expresso from '../../assets/expresso.png'
@@ -28,7 +34,7 @@ export function Home() {
   return (
     <HomeContainer>
       <IntroContainer>
-        <MessageContainer>
+        <AdvertisingContainer>
           <TitleContainer>
             <TitleIntro>
               Encontre o café perfeito para qualquer hora do dia
@@ -38,7 +44,7 @@ export function Home() {
               qualquer hora
             </Subtitle>
           </TitleContainer>
-          <ItemsContainer>
+          <AdvertisingItems>
             <Item>
               <IconContainer variant="cart">
                 <ShoppingCartIcon size={16} weight="fill" />
@@ -63,29 +69,168 @@ export function Home() {
               </IconContainer>
               <div>O café chega fresquinho até você</div>
             </Item>
-          </ItemsContainer>
-        </MessageContainer>
+          </AdvertisingItems>
+        </AdvertisingContainer>
         <ImgContainer src={Intro} />
       </IntroContainer>
       <CoffeeContainer>
         <TitleCoffeeList>Nossos cafés</TitleCoffeeList>
         <CoffeeListContainer>
           <CoffeeItemContainer>
-            <header>
+            <CoffeeItemHeader>
               <img src={Expresso} alt="" />
-              <span>TRADICIONAL</span>
-            </header>
-            <section>
+              <div>
+                <span>TRADICIONAL</span>
+                <span>GELADO</span>
+                <span>COM LEITE</span>
+              </div>
+            </CoffeeItemHeader>
+            <CoffeeItemSection>
               <strong>Expresso tradicional</strong>
               <span>
                 O tradicional café feito com água quente e grãos moídos
               </span>
-            </section>
+            </CoffeeItemSection>
             <CoffeeForm action="">
               <p>
                 R$ <span>9,90</span>
               </p>
-              <InputForm type="number" />
+              <InputGroup>
+                <AddSubButton type="button">
+                  <PlusIcon size={14} weight="bold" />
+                </AddSubButton>
+                <InputForm type="number" placeholder="1" disabled />
+                <AddSubButton type="button">
+                  <MinusIcon size={14} weight="bold" />
+                </AddSubButton>
+              </InputGroup>
+              <ShopButton type="submit">
+                <ShoppingCartIcon size={22} weight="fill" />
+              </ShopButton>
+            </CoffeeForm>
+          </CoffeeItemContainer>
+          <CoffeeItemContainer>
+            <CoffeeItemHeader>
+              <img src={Expresso} alt="" />
+              <div>
+                <span>TRADICIONAL</span>
+              </div>
+            </CoffeeItemHeader>
+            <CoffeeItemSection>
+              <strong>Expresso tradicional</strong>
+              <span>
+                O tradicional café feito com água quente e grãos moídos
+              </span>
+            </CoffeeItemSection>
+            <CoffeeForm action="">
+              <p>
+                R$ <span>9,90</span>
+              </p>
+              <InputGroup>
+                <AddSubButton type="button">
+                  <PlusIcon size={14} weight="bold" />
+                </AddSubButton>
+                <InputForm type="number" placeholder="1" disabled />
+                <AddSubButton type="button">
+                  <MinusIcon size={14} weight="bold" />
+                </AddSubButton>
+              </InputGroup>
+              <ShopButton type="submit">
+                <ShoppingCartIcon size={22} weight="fill" />
+              </ShopButton>
+            </CoffeeForm>
+          </CoffeeItemContainer>
+          <CoffeeItemContainer>
+            <CoffeeItemHeader>
+              <img src={Expresso} alt="" />
+              <div>
+                <span>TRADICIONAL</span>
+                <span>COM LEITE</span>
+              </div>
+            </CoffeeItemHeader>
+            <CoffeeItemSection>
+              <strong>Expresso tradicional</strong>
+              <span>
+                O tradicional café feito com água quente e grãos moídos
+              </span>
+            </CoffeeItemSection>
+            <CoffeeForm action="">
+              <p>
+                R$ <span>9,90</span>
+              </p>
+              <InputGroup>
+                <AddSubButton type="button">
+                  <PlusIcon size={14} weight="bold" />
+                </AddSubButton>
+                <InputForm type="number" placeholder="1" disabled />
+                <AddSubButton type="button">
+                  <MinusIcon size={14} weight="bold" />
+                </AddSubButton>
+              </InputGroup>
+              <ShopButton type="submit">
+                <ShoppingCartIcon size={22} weight="fill" />
+              </ShopButton>
+            </CoffeeForm>
+          </CoffeeItemContainer>
+          <CoffeeItemContainer>
+            <CoffeeItemHeader>
+              <img src={Expresso} alt="" />
+              <div>
+                <span>TRADICIONAL</span>
+                <span>GELADO</span>
+                <span>COM LEITE</span>
+              </div>
+            </CoffeeItemHeader>
+            <CoffeeItemSection>
+              <strong>Expresso tradicional</strong>
+              <span>
+                O tradicional café feito com água quente e grãos moídos
+              </span>
+            </CoffeeItemSection>
+            <CoffeeForm action="">
+              <p>
+                R$ <span>9,90</span>
+              </p>
+              <InputGroup>
+                <AddSubButton type="button">
+                  <PlusIcon size={14} weight="bold" />
+                </AddSubButton>
+                <InputForm type="number" placeholder="1" disabled />
+                <AddSubButton type="button">
+                  <MinusIcon size={14} weight="bold" />
+                </AddSubButton>
+              </InputGroup>
+              <ShopButton type="submit">
+                <ShoppingCartIcon size={22} weight="fill" />
+              </ShopButton>
+            </CoffeeForm>
+          </CoffeeItemContainer>
+          <CoffeeItemContainer>
+            <CoffeeItemHeader>
+              <img src={Expresso} alt="" />
+              <div>
+                <span>TRADICIONAL</span>
+              </div>
+            </CoffeeItemHeader>
+            <CoffeeItemSection>
+              <strong>Expresso tradicional</strong>
+              <span>
+                O tradicional café feito com água quente e grãos moídos
+              </span>
+            </CoffeeItemSection>
+            <CoffeeForm action="">
+              <p>
+                R$ <span>9,90</span>
+              </p>
+              <InputGroup>
+                <AddSubButton type="button">
+                  <PlusIcon size={14} weight="bold" />
+                </AddSubButton>
+                <InputForm type="number" placeholder="1" disabled />
+                <AddSubButton type="button">
+                  <MinusIcon size={14} weight="bold" />
+                </AddSubButton>
+              </InputGroup>
               <ShopButton type="submit">
                 <ShoppingCartIcon size={22} weight="fill" />
               </ShopButton>

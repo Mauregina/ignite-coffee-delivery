@@ -9,7 +9,7 @@ export const GlobalStyle = createGlobalStyle`
 
     :focus {
         outline: 0;
-        box-shadow: 0 0 0 2px;
+        /* box-shadow: 0 0 0 2px; */
     }
 
     body {
@@ -22,5 +22,15 @@ export const GlobalStyle = createGlobalStyle`
         font-family: 'Roboto', sans-serif;
         font-weight: 400;
         font-size: 1rem;
+    }
+
+    button {
+        cursor: pointer;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
     }
 `

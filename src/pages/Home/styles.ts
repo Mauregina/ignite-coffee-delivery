@@ -1,6 +1,13 @@
 import styled from 'styled-components'
 
-import { ShoppingCart, Package, Timer, Coffee } from 'phosphor-react'
+import {
+  ShoppingCart,
+  Package,
+  Timer,
+  Coffee,
+  Plus,
+  Minus,
+} from 'phosphor-react'
 
 export const HomeContainer = styled.main`
   display: flex;
@@ -10,12 +17,12 @@ export const HomeContainer = styled.main`
 
 export const IntroContainer = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
   gap: 3.5rem;
 `
 
-export const MessageContainer = styled.div`
+export const AdvertisingContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -48,7 +55,7 @@ export const Subtitle = styled.div`
   font-size: 1.25rem;
 `
 
-export const ItemsContainer = styled.div`
+export const AdvertisingItems = styled.div`
   display: grid;
   grid-template-columns: auto auto;
   row-gap: 1.25rem;
@@ -116,8 +123,8 @@ export const CoffeeContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 3.375rem;
-
   padding-top: 2rem;
+  padding-bottom: 2rem;
 `
 
 export const CoffeeListContainer = styled.div`
@@ -129,7 +136,6 @@ export const CoffeeListContainer = styled.div`
 
 export const CoffeeItemContainer = styled.div`
   border-radius: 6px 36px;
-  border: 1px solid;
   background-color: ${(props) => props.theme['base-card']};
   min-width: 256px;
 
@@ -137,42 +143,49 @@ export const CoffeeItemContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`
 
-  header {
+export const CoffeeItemHeader = styled.header`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+
+  margin-top: -1.25rem;
+
+  div {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 0.75rem;
-
-    margin-top: -1.25rem;
-
-    span {
-      background-color: ${(props) => props.theme['brand-yellow-light']};
-      color: ${(props) => props.theme['brand-yellow-dark']};
-      font-size: 0.625rem;
-      font-weight: 700;
-      padding: 0.25rem 0.5rem;
-      border-radius: 100px;
-    }
+    gap: 0.25rem;
   }
 
-  section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  span {
+    background-color: ${(props) => props.theme['brand-yellow-light']};
+    color: ${(props) => props.theme['brand-yellow-dark']};
+    font-size: 0.625rem;
+    font-weight: 700;
+    padding: 0.25rem 0.5rem;
+    border-radius: 100px;
+  }
+`
 
-    strong {
-      font-family: 'Baloo 2', cursive;
-      font-size: 1.25rem;
-    }
+export const CoffeeItemSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-    span {
-      font-size: 0.875rem;
-      color: ${(props) => props.theme['base-label']};
-      text-align: center;
-      padding: 0 1.25rem;
-    }
+  strong {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.25rem;
+  }
+
+  span {
+    font-size: 0.875rem;
+    color: ${(props) => props.theme['base-label']};
+    text-align: center;
+    padding: 0 1.25rem;
   }
 `
 
@@ -184,7 +197,7 @@ export const CoffeeForm = styled.form`
 
   p {
     font-size: 0.875rem;
-    /* padding-right: 1.43rem; */
+    margin-right: 2rem;
   }
 
   span {
@@ -193,11 +206,24 @@ export const CoffeeForm = styled.form`
   }
 `
 
+export const InputGroup = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 0;
+
+  background-color: ${(props) => props.theme['base-button']};
+`
+
 export const InputForm = styled.input`
-  height: 2.375rem;
-  margin-right: 0.5rem;
-  margin-left: 1.43rem;
-  width: 4.5rem;
+  width: 1.25rem;
+  margin: 0 0.25rem;
+  border: 0;
+  background-color: transparent;
+  text-align: center;
 `
 
 export const ShopButton = styled.button`
@@ -205,8 +231,30 @@ export const ShopButton = styled.button`
   border-radius: 6px;
   border: 0;
   padding: 0.5rem;
+  margin-left: 0.5rem;
 
   display: flex;
   justify-content: center;
   align-items: center;
+`
+
+export const AddSubButton = styled.button`
+  background-color: transparent;
+  border: 0;
+`
+
+export const PlusIcon = styled(Plus)`
+  color: ${(props) => props.theme['brand-purple']};
+
+  &:hover {
+    color: ${(props) => props.theme['brand-purple-dark']};
+  }
+`
+
+export const MinusIcon = styled(Minus)`
+  color: ${(props) => props.theme['brand-purple']};
+
+  &:hover {
+    color: ${(props) => props.theme['brand-purple-dark']};
+  }
 `
