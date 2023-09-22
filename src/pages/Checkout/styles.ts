@@ -1,9 +1,46 @@
-import { Minus, Plus, Trash } from 'phosphor-react'
+import {
+  Bank,
+  CreditCard,
+  CurrencyDollar,
+  Minus,
+  Money,
+  Plus,
+  Trash,
+} from 'phosphor-react'
 import styled from 'styled-components'
+
+export const Title = styled.h1`
+  font-family: 'Baloo 2', cursive;
+  font-weight: 700;
+  font-size: 1.125rem;
+`
+
+export const TextSmall = styled.div`
+  font-size: 0.875rem;
+`
+
+export const TitleText = styled.div`
+  color: ${(props) => props.theme['base-subtitle']};
+`
+
+export const BaseButton = styled.button`
+  border-radius: 6px;
+  border: 0;
+
+  font-size: 0.75rem;
+  color: ${(props) => props.theme['base-text']};
+  background-color: ${(props) => props.theme['base-button']};
+
+  &:hover {
+    color: ${(props) => props.theme['base-subtitle']};
+    background-color: ${(props) => props.theme['base-hover']};
+  }
+`
 
 export const CheckoutContainer = styled.main`
   display: flex;
   justify-content: center;
+  align-items: flex-start;
   gap: 2rem;
 
   padding-bottom: 2rem;
@@ -11,6 +48,80 @@ export const CheckoutContainer = styled.main`
 
 export const OrderInfoContainer = styled.section`
   width: 40rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9375rem;
+`
+
+export const OtherInfoCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+`
+
+export const AddressInfo = styled.div`
+  padding: 2.5rem;
+  border-radius: 6px;
+  background-color: ${(props) => props.theme['base-card']};
+`
+
+export const PayInfo = styled.div`
+  padding: 2.5rem;
+  border-radius: 6px;
+  background-color: ${(props) => props.theme['base-card']};
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+`
+
+export const PayMessage = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+`
+
+export const CurrencyIcon = styled(CurrencyDollar)`
+  color: ${(props) => props.theme['brand-purple']};
+`
+
+export const PayDescription = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+export const PayAction = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+`
+
+export const PayButton = styled(BaseButton)`
+  flex: 1;
+  padding: 1rem;
+  text-align: left;
+
+  display: flex;
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+`
+
+export const CreditCardIcon = styled(CreditCard)`
+  color: ${(props) => props.theme['brand-purple']};
+`
+
+export const BankIcon = styled(Bank)`
+  color: ${(props) => props.theme['brand-purple']};
+`
+
+export const MoneyIcon = styled(Money)`
+  color: ${(props) => props.theme['brand-purple']};
 `
 
 export const CoffeeSelectedContainer = styled.section`
@@ -20,12 +131,6 @@ export const CoffeeSelectedContainer = styled.section`
   flex-direction: column;
   justify-content: center;
   gap: 0.9375rem;
-`
-
-export const Title = styled.h1`
-  font-family: 'Baloo 2', cursive;
-  font-weight: 700;
-  font-size: 1.125rem;
 `
 
 export const CoffeeSelectedCard = styled.div`
@@ -113,23 +218,12 @@ export const MinusIcon = styled(Minus)`
   }
 `
 
-export const RemoveButton = styled.button`
+export const RemoveButton = styled(BaseButton)`
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.25rem;
-
   padding: 0.5rem;
-  border-radius: 6px;
-  border: 0;
-
-  font-size: 0.75rem;
-  color: ${(props) => props.theme['base-text']};
-  background-color: ${(props) => props.theme['base-button']};
-
-  &:hover {
-    background-color: ${(props) => props.theme['base-hover']};
-  }
 `
 
 export const TrashIcon = styled(Trash)`
