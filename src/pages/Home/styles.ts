@@ -13,9 +13,11 @@ export const HomeContainer = styled.main`
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  padding-bottom: 2rem;
 `
 
-export const IntroContainer = styled.div`
+export const IntroSection = styled.section`
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -38,7 +40,7 @@ export const TitleContainer = styled.div`
   padding-top: 5.875rem;
 `
 
-const Title = styled.div`
+const Title = styled.h1`
   font-family: 'Baloo 2', cursive;
   font-weight: 800;
 `
@@ -119,12 +121,11 @@ export const ImgContainer = styled.img`
   padding: 5.75rem 0;
 `
 
-export const CoffeeContainer = styled.div`
+export const CoffeeSection = styled.section`
   display: flex;
   flex-direction: column;
   gap: 3.375rem;
   padding-top: 2rem;
-  padding-bottom: 2rem;
 `
 
 export const CoffeeListContainer = styled.div`
@@ -137,7 +138,7 @@ export const CoffeeListContainer = styled.div`
 export const CoffeeItemContainer = styled.div`
   border-radius: 6px 36px;
   background-color: ${(props) => props.theme['base-card']};
-  min-width: 256px;
+  min-width: 16rem;
 
   display: flex;
   flex-direction: column;
@@ -216,6 +217,10 @@ export const InputGroup = styled.div`
   border: 0;
 
   background-color: ${(props) => props.theme['base-button']};
+
+  &:hover {
+    background-color: ${(props) => props.theme['base-hover']};
+  }
 `
 
 export const InputForm = styled.input`
@@ -236,6 +241,10 @@ export const ShopButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &:hover {
+    background-color: ${(props) => props.theme['brand-purple']};
+  }
 `
 
 export const AddSubButton = styled.button`

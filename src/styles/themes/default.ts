@@ -1,4 +1,5 @@
 export const defaultTheme = {
+  'base-white': '#FFFFFF',
   'base-background': '#FAFAFA',
   'base-button': '#E6E5E5',
   'base-card': '#F3F2F2',
@@ -6,6 +7,7 @@ export const defaultTheme = {
   'base-subtitle': '#403937',
   'base-text': '#574F4D',
   'base-title': '#272221',
+  'base-hover': '#D7D5D5',
 
   'brand-yellow': '#DBAC2C',
   'brand-yellow-light': '#F1E9C9',
