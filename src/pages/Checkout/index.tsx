@@ -1,7 +1,7 @@
 import {
   CheckoutContainer,
   CoffeeImg,
-  OrderInfoContainer,
+  OrderInfoSection,
   CoffeeSelectedContainer,
   ItemElement,
   OrderValueItem,
@@ -19,18 +19,20 @@ import {
   ConfirmButton,
   TotalGrid,
   TotalGridText,
+  OtherInfoContent,
   OtherInfoCard,
-  AddressInfo,
-  PayInfo,
-  PayMessage,
+  MessageHeader,
   PayAction,
   CurrencyIcon,
-  PayDescription,
+  MessageDescription,
   TextSmall,
   TitleText,
   PayButton,
   BankIcon,
   MoneyIcon,
+  MapPinLineIcon,
+  AddressInfo,
+  Input,
 } from './styles'
 
 import Expresso from '../../assets/expresso.png'
@@ -38,21 +40,38 @@ import Expresso from '../../assets/expresso.png'
 export function Checkout() {
   return (
     <CheckoutContainer>
-      <OrderInfoContainer>
+      <OrderInfoSection>
         <Title>Complete seu pedido</Title>
-        <OtherInfoCard>
-          <AddressInfo>AddressInfo</AddressInfo>
-          <PayInfo>
-            <PayMessage>
-              <CurrencyIcon size={22}>icone</CurrencyIcon>
-              <PayDescription>
+        <OtherInfoContent>
+          <OtherInfoCard>
+            {' '}
+            <MessageHeader>
+              <MapPinLineIcon size={22} />
+              <MessageDescription>
+                <TitleText>Endereço de Entrega</TitleText>
+                <TextSmall>
+                  Informe o endereço onde deseja receber seu pedido
+                </TextSmall>
+              </MessageDescription>
+            </MessageHeader>
+            <AddressInfo>
+              <Input placeholder="CEP" />
+              <Input placeholder="Rua" />
+              <div>OUTRO</div>
+              <div>OUTRO</div>
+            </AddressInfo>
+          </OtherInfoCard>
+          <OtherInfoCard>
+            <MessageHeader>
+              <CurrencyIcon size={22} />
+              <MessageDescription>
                 <TitleText>Pagamento</TitleText>
                 <TextSmall>
                   O pagamento é feito na entrega. Escolha a forma que deseja
                   pagar
                 </TextSmall>
-              </PayDescription>
-            </PayMessage>
+              </MessageDescription>
+            </MessageHeader>
             <PayAction>
               <PayButton>
                 <BankIcon size={16} />
@@ -67,9 +86,9 @@ export function Checkout() {
                 DINHEIRO
               </PayButton>
             </PayAction>
-          </PayInfo>
-        </OtherInfoCard>
-      </OrderInfoContainer>
+          </OtherInfoCard>
+        </OtherInfoContent>
+      </OrderInfoSection>
       <CoffeeSelectedContainer>
         <Title>Cafés selecionados</Title>
         <CoffeeSelectedCard>

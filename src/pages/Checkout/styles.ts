@@ -2,6 +2,7 @@ import {
   Bank,
   CreditCard,
   CurrencyDollar,
+  MapPinLine,
   Minus,
   Money,
   Plus,
@@ -46,26 +47,20 @@ export const CheckoutContainer = styled.main`
   padding-bottom: 2rem;
 `
 
-export const OrderInfoContainer = styled.section`
+export const OrderInfoSection = styled.section`
   width: 40rem;
   display: flex;
   flex-direction: column;
   gap: 0.9375rem;
 `
 
-export const OtherInfoCard = styled.div`
+export const OtherInfoContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 `
 
-export const AddressInfo = styled.div`
-  padding: 2.5rem;
-  border-radius: 6px;
-  background-color: ${(props) => props.theme['base-card']};
-`
-
-export const PayInfo = styled.div`
+export const OtherInfoCard = styled.div`
   padding: 2.5rem;
   border-radius: 6px;
   background-color: ${(props) => props.theme['base-card']};
@@ -75,7 +70,7 @@ export const PayInfo = styled.div`
   gap: 2rem;
 `
 
-export const PayMessage = styled.div`
+export const MessageHeader = styled.header`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -88,9 +83,32 @@ export const CurrencyIcon = styled(CurrencyDollar)`
   color: ${(props) => props.theme['brand-purple']};
 `
 
-export const PayDescription = styled.div`
+export const MapPinLineIcon = styled(MapPinLine)`
+  color: ${(props) => props.theme['brand-yellow-dark']};
+`
+
+export const MessageDescription = styled.div`
   display: flex;
   flex-direction: column;
+`
+
+export const AddressInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`
+
+export const Input = styled.input`
+  border: 0;
+  border-radius: 4px;
+  padding: 0.75rem;
+  background-color: ${(props) => props.theme['base-button']};
+  color: ${(props) => props.theme['base-label']};
+  font-size: 0.875rem;
+
+  &:focus {
+    border: solid 1px ${(props) => props.theme['brand-yellow']};
+  }
 `
 
 export const PayAction = styled.div`
