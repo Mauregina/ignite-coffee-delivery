@@ -96,18 +96,73 @@ export const AddressInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
+  div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
 `
 
-export const Input = styled.input`
+interface InputProps {
+  size?: string
+}
+
+export const Input = styled.input<InputProps>`
   border: 0;
   border-radius: 4px;
   padding: 0.75rem;
+  margin-bottom: 2px;
+
+  width: ${(props) => props.size && props.size};
+  flex: ${(props) => !props.size && 1};
+
   background-color: ${(props) => props.theme['base-button']};
   color: ${(props) => props.theme['base-label']};
   font-size: 0.875rem;
 
   &:focus {
     border: solid 1px ${(props) => props.theme['brand-yellow']};
+    margin-bottom: 0;
+  }
+
+  &:not(:placeholder-shown) {
+    color: ${(props) => props.theme['base-text']};
+  }
+`
+
+export const ComplementContainer = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+
+  padding: 0.75rem;
+  margin-bottom: 2px;
+  border-radius: 4px;
+  background-color: ${(props) => props.theme['base-button']};
+
+  span {
+    width: 2.875rem;
+    font-size: 0.75rem;
+    color: ${(props) => props.theme['base-label']};
+  }
+
+  &:focus-within {
+    border: solid 1px ${(props) => props.theme['brand-yellow']};
+    margin-bottom: 0;
+  }
+`
+
+export const InputComplement = styled.input`
+  flex: 1;
+  border: 0;
+  background-color: transparent;
+  color: ${(props) => props.theme['base-label']};
+  font-size: 0.875rem;
+
+  &:not(:placeholder-shown) {
+    color: ${(props) => props.theme['base-text']};
   }
 `
 
@@ -119,15 +174,35 @@ export const PayAction = styled.div`
   gap: 0.75rem;
 `
 
-export const PayButton = styled(BaseButton)`
+interface PayButtonProps {
+  isSelected: boolean
+}
+
+export const PayButton = styled(BaseButton)<PayButtonProps>`
   flex: 1;
   padding: 1rem;
   text-align: left;
+  margin-bottom: 2px;
+  margin-right: 2px;
 
   display: flex;
   display: flex;
   flex-direction: row;
   gap: 0.75rem;
+
+  background-color: ${(props) =>
+    props.isSelected && props.theme['brand-purple-light']};
+
+  border: ${(props) =>
+    props.isSelected && 'solid 1px' + props.theme['brand-purple']};
+
+  margin-bottom: ${(props) => props.isSelected && 0};
+  margin-right: ${(props) => props.isSelected && 0};
+
+  &:hover {
+    background-color: ${(props) =>
+      props.isSelected && props.theme['brand-purple-light']};
+  }
 `
 
 export const CreditCardIcon = styled(CreditCard)`

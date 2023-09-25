@@ -33,6 +33,8 @@ import {
   MapPinLineIcon,
   AddressInfo,
   Input,
+  ComplementContainer,
+  InputComplement,
 } from './styles'
 
 import Expresso from '../../assets/expresso.png'
@@ -44,7 +46,6 @@ export function Checkout() {
         <Title>Complete seu pedido</Title>
         <OtherInfoContent>
           <OtherInfoCard>
-            {' '}
             <MessageHeader>
               <MapPinLineIcon size={22} />
               <MessageDescription>
@@ -55,10 +56,20 @@ export function Checkout() {
               </MessageDescription>
             </MessageHeader>
             <AddressInfo>
-              <Input placeholder="CEP" />
+              <Input placeholder="CEP" size="12.5rem" />
               <Input placeholder="Rua" />
-              <div>OUTRO</div>
-              <div>OUTRO</div>
+              <div>
+                <Input placeholder="Número" size="12.5rem" />
+                <ComplementContainer>
+                  <InputComplement placeholder="Complemento" />
+                  <span>Opcional</span>
+                </ComplementContainer>
+              </div>
+              <div>
+                <Input placeholder="Bairro" size="12.5rem" />
+                <Input placeholder="Cidade" />
+                <Input placeholder="UF" size="3.75rem" maxLength={2} />
+              </div>
             </AddressInfo>
           </OtherInfoCard>
           <OtherInfoCard>
@@ -77,7 +88,7 @@ export function Checkout() {
                 <BankIcon size={16} />
                 CARTÃO DE CRÉDITO
               </PayButton>
-              <PayButton>
+              <PayButton isSelected>
                 <BankIcon size={16} />
                 CARTÃO DE DÉBITO
               </PayButton>
