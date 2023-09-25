@@ -51,10 +51,12 @@ export const TitleIntro = styled(Title)`
 
 export const TitleCoffeeList = styled(Title)`
   font-size: 2rem;
+  color: ${(props) => props.theme['base-subtitle']};
 `
 
 export const Subtitle = styled.div`
   font-size: 1.25rem;
+  color: ${(props) => props.theme['base-subtitle']};
 `
 
 export const AdvertisingItems = styled.div`
