@@ -6,6 +6,7 @@ import {
   ShoppingCartIcon,
   LocationContainer,
   MapIcon,
+  CartCount,
 } from './styles'
 
 import Logo from '../../assets/logo.svg'
@@ -23,6 +24,7 @@ export function Header() {
         </LocationContainer>
         <CartContainer to="/checkout">
           <ShoppingCartIcon size={22} weight="fill" />
+          <CartCount>3</CartCount>
         </CartContainer>
       </ActionContainer>
     </HeaderContainer>

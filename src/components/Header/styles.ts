@@ -17,6 +17,8 @@ export const ActionContainer = styled.div`
 `
 
 export const CartContainer = styled(Link)`
+  position: relative;
+
   display: flex;
   justify-items: center;
   align-items: center;
@@ -30,6 +32,26 @@ export const CartContainer = styled(Link)`
 export const ShoppingCartIcon = styled(ShoppingCart)`
   color: ${(props) => props.theme['brand-yellow-dark']};
 `
+
+export const CartCount = styled.span`
+  width: 1.25rem;
+  height: 1.25rem;
+
+  position: absolute;
+
+  top: -25%;
+  right: -25%;
+  background-color: ${(props) => props.theme['brand-yellow-dark']};
+  color: ${(props) => props.theme['base-white']};
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 700;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
 export const LocationContainer = styled.div`
   display: flex;
   justify-items: center;

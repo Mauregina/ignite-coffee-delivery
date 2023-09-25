@@ -115,17 +115,3 @@ export const CoffeeIcon = styled(Coffee)`
 export const ImgContainer = styled.img`
   padding: 5.75rem 0;
 `
-
-export const CoffeeSection = styled.section`
-  display: flex;
-  flex-direction: column;
-  gap: 3.375rem;
-  padding-top: 2rem;
-`
-
-export const CoffeeListContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  row-gap: 2.5rem;
-  column-gap: 2rem;
-`
