@@ -217,7 +217,7 @@ export const MoneyIcon = styled(Money)`
   color: ${(props) => props.theme['brand-purple']};
 `
 
-export const CoffeeSelectedContainer = styled.section`
+export const CoffeeSelectedSection = styled.section`
   width: 28rem;
 
   display: flex;

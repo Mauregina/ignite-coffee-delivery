@@ -2,7 +2,7 @@ import {
   CheckoutContainer,
   CoffeeImg,
   OrderInfoSection,
-  CoffeeSelectedContainer,
+  CoffeeSelectedSection,
   ItemElement,
   OrderValueItem,
   Title,
@@ -100,7 +100,7 @@ export function Checkout() {
           </OtherInfoCard>
         </OtherInfoContent>
       </OrderInfoSection>
-      <CoffeeSelectedContainer>
+      <CoffeeSelectedSection>
         <Title>Cafés selecionados</Title>
         <CoffeeSelectedCard>
           <OrderValueItem>
@@ -187,7 +187,7 @@ export function Checkout() {
           </TotalGrid>
           <ConfirmButton type="button">CONFIRMAR PEDIDO</ConfirmButton>
         </CoffeeSelectedCard>
-      </CoffeeSelectedContainer>
+      </CoffeeSelectedSection>
     </CheckoutContainer>
   )
 }
