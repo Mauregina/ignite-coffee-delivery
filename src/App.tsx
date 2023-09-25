@@ -13,20 +13,18 @@ interface Cart {
 
 interface CartContextType {
   cart: Cart[]
+  setCartItems: React.Dispatch<React.SetStateAction<Cart[]>>
 }
 
 export const CartContext = createContext({} as CartContextType)
 
 export function App() {
-  const [cartItems] = useState<Cart[]>([
-    { coffeeId: 1, quantity: 1 },
-    { coffeeId: 2, quantity: 1 },
-  ])
+  const [cartItems, setCartItems] = useState<Cart[]>([])
 
   return (
     <ThemeProvider theme={defaultTheme}>
       <BrowserRouter>
-        <CartContext.Provider value={{ cart: cartItems }}>
+        <CartContext.Provider value={{ cart: cartItems, setCartItems }}>
           <Router />
         </CartContext.Provider>
       </BrowserRouter>

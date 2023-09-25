@@ -6,7 +6,6 @@ import {
 } from './styles'
 
 import { Intro } from './components/Intro'
-import { FormEvent, useState } from 'react'
 import { CoffeeItem } from './components/CoffeeItem'
 
 export function Home() {
@@ -23,11 +22,6 @@ export function Home() {
     name: string
     description: string
     value: number
-  }
-
-  interface Cart {
-    coffeeId: number
-    quantity: number
   }
 
   const coffeeMenuList: CoffeeMenu[] = [
@@ -136,33 +130,6 @@ export function Home() {
     },
   ]
 
-  const [cart, setCart] = useState<Cart[]>([])
-
-  function handleUpdateCart(
-    event: FormEvent,
-    coffeeId: number,
-    quantity: number,
-  ) {
-    event?.preventDefault()
-    console.log(cart)
-    const coffeeItemInCartAlready =
-      cart.findIndex((i) => i.coffeeId === coffeeId) !== -1
-
-    if (coffeeItemInCartAlready) {
-      const newCart = cart.map((i) =>
-        i.coffeeId === coffeeId ? { ...i, quantity } : i,
-      )
-      setCart(newCart)
-      return
-    }
-
-    const newItem: Cart = {
-      coffeeId,
-      quantity,
-    }
-    setCart((state) => [...state, newItem])
-  }
-
   return (
     <HomeContainer>
       <Intro />
@@ -170,11 +137,7 @@ export function Home() {
         <TitleCoffeeList>Nossos cafés</TitleCoffeeList>
         <CoffeeListContainer>
           {coffeeMenuList.map((item) => (
-            <CoffeeItem
-              key={item.id}
-              item={item}
-              onUpdateCart={handleUpdateCart}
-            />
+            <CoffeeItem key={item.id} item={item} />
           ))}
         </CoffeeListContainer>
       </CoffeeSection>

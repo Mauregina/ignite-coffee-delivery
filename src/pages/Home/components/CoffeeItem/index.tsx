@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react'
+import { FormEvent, useContext, useState } from 'react'
 import {
   AddSubButton,
   CoffeeForm,
@@ -14,6 +14,7 @@ import {
 } from './styles'
 
 import Expresso from '../../../../assets/expresso.png'
+import { CartContext } from '../../../../App'
 
 type CoffeeType =
   | 'tradicional'
@@ -32,11 +33,41 @@ interface CoffeeMenu {
 
 interface CoffeeItemProps {
   item: CoffeeMenu
-  onUpdateCart: (e: FormEvent, coffeeId: number, quantity: number) => void
 }
 
-export function CoffeeItem({ item, onUpdateCart }: CoffeeItemProps) {
+interface Cart {
+  coffeeId: number
+  quantity: number
+}
+
+export function CoffeeItem({ item }: CoffeeItemProps) {
+  const { cart, setCartItems } = useContext(CartContext)
   const [quantity, setQuantity] = useState(0)
+
+  function handleUpdateCart(
+    event: FormEvent,
+    coffeeId: number,
+    quantity: number,
+  ) {
+    event?.preventDefault()
+    console.log(cart)
+    const coffeeItemInCartAlready =
+      cart.findIndex((i) => i.coffeeId === coffeeId) !== -1
+
+    if (coffeeItemInCartAlready) {
+      const newCart = cart.map((i) =>
+        i.coffeeId === coffeeId ? { ...i, quantity } : i,
+      )
+      setCartItems(newCart)
+      return
+    }
+
+    const newItem: Cart = {
+      coffeeId,
+      quantity,
+    }
+    setCartItems((state) => [...state, newItem])
+  }
 
   function addQuantity() {
     setQuantity((state) => {
@@ -66,7 +97,7 @@ export function CoffeeItem({ item, onUpdateCart }: CoffeeItemProps) {
         <strong>{item.name}</strong>
         <span>{item.description}</span>
       </CoffeeItemSection>
-      <CoffeeForm onSubmit={(e) => onUpdateCart(e, item.id, quantity)}>
+      <CoffeeForm onSubmit={(e) => handleUpdateCart(e, item.id, quantity)}>
         <p>
           R$ <span>{item.value}</span>
         </p>
