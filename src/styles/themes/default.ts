@@ -15,4 +15,6 @@ export const defaultTheme = {
   'brand-purple': '#8047F8',
   'brand-purple-light': '#EBE5F9',
   'brand-purple-dark': '#4B2995',
+
+  'error-msg': '#DC3545',
 }

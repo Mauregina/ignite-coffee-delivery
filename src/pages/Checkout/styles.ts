@@ -167,6 +167,14 @@ export const InputComplement = styled.input`
   }
 `
 
+export const ErrorContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  color: ${(props) => props.theme['error-msg']};
+  font-size: 0.875rem;
+`
+
 export const PayAction = styled.div`
   display: flex;
   flex-direction: row;
