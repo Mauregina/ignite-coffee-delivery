@@ -172,7 +172,7 @@ export const PayAction = styled.div`
 `
 
 interface PayButtonProps {
-  isSelected: boolean
+  selected: boolean
 }
 
 export const PayButton = styled(BaseButton)<PayButtonProps>`
@@ -188,17 +188,17 @@ export const PayButton = styled(BaseButton)<PayButtonProps>`
   gap: 0.75rem;
 
   background-color: ${(props) =>
-    props.isSelected && props.theme['brand-purple-light']};
+    props.selected && props.theme['brand-purple-light']};
 
   border: ${(props) =>
-    props.isSelected && 'solid 1px' + props.theme['brand-purple']};
+    props.selected && 'solid 1px' + props.theme['brand-purple']};
 
-  margin-bottom: ${(props) => props.isSelected && 0};
-  margin-right: ${(props) => props.isSelected && 0};
+  margin-bottom: ${(props) => props.selected && 0};
+  margin-right: ${(props) => props.selected && 0};
 
   &:hover {
     background-color: ${(props) =>
-      props.isSelected && props.theme['brand-purple-light']};
+      props.selected && props.theme['brand-purple-light']};
   }
 `
 
@@ -245,5 +245,9 @@ export const ConfirmButton = styled.button`
 
   &:hover {
     background-color: ${(props) => props.theme['brand-yellow-dark']};
+  }
+
+  &:disabled {
+    cursor: not-allowed;
   }
 `

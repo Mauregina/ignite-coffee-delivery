@@ -1,6 +1,4 @@
-import { useContext } from 'react'
-import { CartContext } from '../../App'
-import { CoffeeSelected } from './CoffeeSelected'
+import { useContext, useState } from 'react'
 import {
   CheckoutContainer,
   OrderInfoSection,
@@ -25,10 +23,15 @@ import {
   ComplementContainer,
   InputComplement,
 } from './styles'
+import { CartContext } from '../../App'
+import { CoffeeSelected } from './CoffeeSelected'
 import { Total } from './Total'
 
 export function Checkout() {
   const { cart } = useContext(CartContext)
+  const [paymentType, setPaymentType] = useState(0)
+
+  const isAllowedConfirmation = cart.cartItems.length > 0
 
   return (
     <CheckoutContainer>
@@ -74,15 +77,24 @@ export function Checkout() {
               </MessageDescription>
             </MessageHeader>
             <PayAction>
-              <PayButton>
+              <PayButton
+                onClick={() => setPaymentType(0)}
+                selected={paymentType === 0}
+              >
                 <BankIcon size={16} />
                 CARTÃO DE CRÉDITO
               </PayButton>
-              <PayButton isSelected>
+              <PayButton
+                onClick={() => setPaymentType(1)}
+                selected={paymentType === 1}
+              >
                 <BankIcon size={16} />
                 CARTÃO DE DÉBITO
               </PayButton>
-              <PayButton>
+              <PayButton
+                onClick={() => setPaymentType(2)}
+                selected={paymentType === 2}
+              >
                 <MoneyIcon size={16} />
                 DINHEIRO
               </PayButton>
@@ -97,7 +109,9 @@ export function Checkout() {
             <CoffeeSelected key={item.coffeeId} coffeeId={item.coffeeId} />
           ))}
           <Total />
-          <ConfirmButton type="button">CONFIRMAR PEDIDO</ConfirmButton>
+          <ConfirmButton type="button" disabled={!isAllowedConfirmation}>
+            CONFIRMAR PEDIDO
+          </ConfirmButton>
         </CoffeeSelectedCard>
       </CoffeeSelectedSection>
     </CheckoutContainer>

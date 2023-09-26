@@ -19,8 +19,6 @@ export function Header() {
   const totalQuantity = getCartTotalQuantity()
   const isCartEmpty = totalQuantity === 0
 
-  console.log('HEADER')
-
   return (
     <HeaderContainer>
       <Link to="/">

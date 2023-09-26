@@ -49,8 +49,6 @@ export function CoffeeSelected({ coffeeId }: CoffeeSelectedProps) {
     updateCart(coffeeId, 0)
   }
 
-  console.log('SELECTED', cartItemQuantity)
-
   return (
     <OrderValueItem>
       <ItemElement>
