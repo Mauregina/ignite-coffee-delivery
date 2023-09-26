@@ -19,6 +19,7 @@ interface Cart {
 
 interface CartContextType {
   cart: Cart
+  getCartItemQuantity: (coffeeId: number) => number
   updateCart: (coffeeId: number, quantity: number) => void
 }
 
@@ -27,26 +28,38 @@ export const CartContext = createContext({} as CartContextType)
 export function App() {
   const [cart, setCart] = useState<Cart>({ cartItems: [] })
 
+  function getCartItemQuantity(coffeeId: number) {
+    const cartItem = cart.cartItems.find((i) => i.coffeeId === coffeeId)
+    return cartItem ? cartItem.quantity : 0
+  }
+
   function updateCart(coffeeId: number, quantity: number) {
     const coffeeItemInCartAlready =
       cart.cartItems.findIndex((i) => i.coffeeId === coffeeId) !== -1
 
+    if (quantity === 0 && !coffeeItemInCartAlready) return
+
+    let updatedCart: Cart
+
     if (coffeeItemInCartAlready) {
-      const updatedCart: Cart = {
-        ...cart,
-        cartItems: cart.cartItems.map((i) =>
-          i.coffeeId === coffeeId ? { ...i, quantity } : i,
-        ),
+      if (quantity === 0) {
+        updatedCart = {
+          ...cart,
+          cartItems: cart.cartItems.filter((i) => i.coffeeId !== coffeeId),
+        }
+      } else {
+        updatedCart = {
+          ...cart,
+          cartItems: cart.cartItems.map((i) =>
+            i.coffeeId === coffeeId ? { ...i, quantity } : i,
+          ),
+        }
       }
       setCart(updatedCart)
       return
     }
 
-    if (quantity === 0) {
-      return
-    }
-
-    const updatedCart: Cart = {
+    updatedCart = {
       ...cart,
       cartItems: [
         ...cart.cartItems,
@@ -62,7 +75,7 @@ export function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <BrowserRouter>
-        <CartContext.Provider value={{ cart, updateCart }}>
+        <CartContext.Provider value={{ cart, updateCart, getCartItemQuantity }}>
           <Router />
         </CartContext.Provider>
       </BrowserRouter>

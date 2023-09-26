@@ -16,7 +16,11 @@ export const ActionContainer = styled.div`
   gap: 0.75rem;
 `
 
-export const CartContainer = styled(Link)`
+interface CartLinkProps {
+  disabled: boolean
+}
+
+export const CartLink = styled(Link)<CartLinkProps>`
   position: relative;
 
   display: flex;
@@ -27,6 +31,8 @@ export const CartContainer = styled(Link)`
   padding: 0.5rem;
 
   background-color: ${(props) => props.theme['brand-yellow-light']};
+
+  pointer-events: ${(props) => (props.disabled ? 'none' : '')};
 `
 
 export const ShoppingCartIcon = styled(ShoppingCart)`

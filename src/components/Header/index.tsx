@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import {
   HeaderContainer,
   ActionContainer,
-  CartContainer,
+  CartLink,
   ShoppingCartIcon,
   LocationContainer,
   MapIcon,
@@ -16,10 +16,11 @@ import { CartContext } from '../../App'
 export function Header() {
   const { cart } = useContext(CartContext)
 
-  console.log('CART ', cart)
-
   const totalQuantity =
     cart?.cartItems.reduce((total, item) => total + item.quantity, 0) || 0
+  const isCartEmpty = totalQuantity === 0
+
+  console.log('HEADER', cart)
 
   return (
     <HeaderContainer>
@@ -31,10 +32,10 @@ export function Header() {
           <MapIcon size={22} weight="fill" />
           <span>Manaus, AM</span>
         </LocationContainer>
-        <CartContainer to="/checkout">
+        <CartLink to="/checkout" disabled={isCartEmpty}>
           <ShoppingCartIcon size={22} weight="fill" />
-          {totalQuantity > 0 && <CartCount>{totalQuantity}</CartCount>}
-        </CartContainer>
+          {!isCartEmpty && <CartCount>{totalQuantity}</CartCount>}
+        </CartLink>
       </ActionContainer>
     </HeaderContainer>
   )

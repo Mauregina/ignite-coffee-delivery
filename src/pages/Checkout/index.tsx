@@ -1,20 +1,11 @@
+import { useContext } from 'react'
+import { CartContext } from '../../App'
+import { CoffeeSelected } from './CoffeeSelected'
 import {
   CheckoutContainer,
-  CoffeeImg,
   OrderInfoSection,
   CoffeeSelectedSection,
-  ItemElement,
-  OrderValueItem,
   Title,
-  Detail,
-  InputGroup,
-  AddSubButton,
-  PlusIcon,
-  InputForm,
-  MinusIcon,
-  DetailAction,
-  RemoveButton,
-  TrashIcon,
   CoffeeSelectedCard,
   ConfirmButton,
   TotalGrid,
@@ -37,9 +28,9 @@ import {
   InputComplement,
 } from './styles'
 
-import Expresso from '../../assets/expresso.png'
-
 export function Checkout() {
+  const { cart } = useContext(CartContext)
+
   return (
     <CheckoutContainer>
       <OrderInfoSection>
@@ -103,78 +94,9 @@ export function Checkout() {
       <CoffeeSelectedSection>
         <Title>Cafés selecionados</Title>
         <CoffeeSelectedCard>
-          <OrderValueItem>
-            <ItemElement>
-              <CoffeeImg src={Expresso} alt="" />
-              <Detail>
-                <span>Expresso Tradicional</span>
-                <DetailAction>
-                  <InputGroup>
-                    <AddSubButton type="button">
-                      <MinusIcon size={14} weight="bold" />
-                    </AddSubButton>
-                    <InputForm type="number" placeholder="1" disabled />
-                    <AddSubButton type="button">
-                      <PlusIcon size={14} weight="bold" />
-                    </AddSubButton>
-                  </InputGroup>
-                  <RemoveButton type="button">
-                    <TrashIcon size={16} />
-                    REMOVER
-                  </RemoveButton>
-                </DetailAction>
-              </Detail>
-            </ItemElement>
-            <strong>R$ 9,90</strong>
-          </OrderValueItem>
-          <OrderValueItem>
-            <ItemElement>
-              <CoffeeImg src={Expresso} alt="" />
-              <Detail>
-                <span>Expresso Tradicional</span>
-                <DetailAction>
-                  <InputGroup>
-                    <AddSubButton type="button">
-                      <MinusIcon size={14} weight="bold" />
-                    </AddSubButton>
-                    <InputForm type="number" placeholder="1" disabled />
-                    <AddSubButton type="button">
-                      <PlusIcon size={14} weight="bold" />
-                    </AddSubButton>
-                  </InputGroup>
-                  <RemoveButton type="button">
-                    <TrashIcon size={16} />
-                    REMOVER
-                  </RemoveButton>
-                </DetailAction>
-              </Detail>
-            </ItemElement>
-            <strong>R$ 9,90</strong>
-          </OrderValueItem>
-          <OrderValueItem>
-            <ItemElement>
-              <CoffeeImg src={Expresso} alt="" />
-              <Detail>
-                <span>Expresso Tradicional</span>
-                <DetailAction>
-                  <InputGroup>
-                    <AddSubButton type="button">
-                      <MinusIcon size={14} weight="bold" />
-                    </AddSubButton>
-                    <InputForm type="number" placeholder="1" disabled />
-                    <AddSubButton type="button">
-                      <PlusIcon size={14} weight="bold" />
-                    </AddSubButton>
-                  </InputGroup>
-                  <RemoveButton type="button">
-                    <TrashIcon size={16} />
-                    REMOVER
-                  </RemoveButton>
-                </DetailAction>
-              </Detail>
-            </ItemElement>
-            <strong>R$ 9,90</strong>
-          </OrderValueItem>
+          {cart.cartItems.map((item) => (
+            <CoffeeSelected key={item.coffeeId} coffeeId={item.coffeeId} />
+          ))}
           <TotalGrid>
             <TotalGridText sizeSmall>Total de itens</TotalGridText>
             <TotalGridText alignRight>R$ 27,00</TotalGridText>

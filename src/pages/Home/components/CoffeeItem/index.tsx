@@ -38,15 +38,12 @@ interface CoffeeItemProps {
 export function CoffeeItem({ item }: CoffeeItemProps) {
   const { updateCart } = useContext(CartContext)
   const [quantity, setQuantity] = useState(0)
+  const itemId = item.id
 
-  function handleUpdateCart(
-    event: FormEvent,
-    coffeeId: number,
-    quantity: number,
-  ) {
+  function handleUpdateCart(event: FormEvent) {
     event?.preventDefault()
 
-    updateCart(coffeeId, quantity)
+    updateCart(itemId, quantity)
   }
 
   function addQuantity() {
@@ -77,7 +74,7 @@ export function CoffeeItem({ item }: CoffeeItemProps) {
         <strong>{item.name}</strong>
         <span>{item.description}</span>
       </CoffeeItemSection>
-      <CoffeeForm onSubmit={(e) => handleUpdateCart(e, item.id, quantity)}>
+      <CoffeeForm onSubmit={(e) => handleUpdateCart(e)}>
         <p>
           R$ <span>{item.value}</span>
         </p>
