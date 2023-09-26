@@ -16,7 +16,10 @@ import { CartContext } from '../../App'
 export function Header() {
   const { cart } = useContext(CartContext)
 
-  const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0)
+  console.log('CART ', cart)
+
+  const totalQuantity =
+    cart?.cartItems.reduce((total, item) => total + item.quantity, 0) || 0
 
   return (
     <HeaderContainer>

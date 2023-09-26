@@ -35,13 +35,8 @@ interface CoffeeItemProps {
   item: CoffeeMenu
 }
 
-interface Cart {
-  coffeeId: number
-  quantity: number
-}
-
 export function CoffeeItem({ item }: CoffeeItemProps) {
-  const { cart, setCartItems } = useContext(CartContext)
+  const { updateCart } = useContext(CartContext)
   const [quantity, setQuantity] = useState(0)
 
   function handleUpdateCart(
@@ -50,23 +45,8 @@ export function CoffeeItem({ item }: CoffeeItemProps) {
     quantity: number,
   ) {
     event?.preventDefault()
-    console.log(cart)
-    const coffeeItemInCartAlready =
-      cart.findIndex((i) => i.coffeeId === coffeeId) !== -1
 
-    if (coffeeItemInCartAlready) {
-      const newCart = cart.map((i) =>
-        i.coffeeId === coffeeId ? { ...i, quantity } : i,
-      )
-      setCartItems(newCart)
-      return
-    }
-
-    const newItem: Cart = {
-      coffeeId,
-      quantity,
-    }
-    setCartItems((state) => [...state, newItem])
+    updateCart(coffeeId, quantity)
   }
 
   function addQuantity() {
