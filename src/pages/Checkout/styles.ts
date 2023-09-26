@@ -36,6 +36,10 @@ export const BaseButton = styled.button`
 `
 
 export const CheckoutContainer = styled.main`
+  padding-bottom: 2rem;
+`
+
+export const Form = styled.form`
   display: flex;
   justify-content: center;
   align-items: flex-start;
