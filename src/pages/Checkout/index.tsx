@@ -8,8 +8,6 @@ import {
   Title,
   CoffeeSelectedCard,
   ConfirmButton,
-  TotalGrid,
-  TotalGridText,
   OtherInfoContent,
   OtherInfoCard,
   MessageHeader,
@@ -27,6 +25,7 @@ import {
   ComplementContainer,
   InputComplement,
 } from './styles'
+import { Total } from './Total'
 
 export function Checkout() {
   const { cart } = useContext(CartContext)
@@ -97,16 +96,7 @@ export function Checkout() {
           {cart.cartItems.map((item) => (
             <CoffeeSelected key={item.coffeeId} coffeeId={item.coffeeId} />
           ))}
-          <TotalGrid>
-            <TotalGridText sizeSmall>Total de itens</TotalGridText>
-            <TotalGridText alignRight>R$ 27,00</TotalGridText>
-            <TotalGridText sizeSmall>Entrega</TotalGridText>
-            <TotalGridText alignRight>R$ 2,70</TotalGridText>
-            <TotalGridText bold>Total</TotalGridText>
-            <TotalGridText alignRight bold>
-              R$ 29,70
-            </TotalGridText>
-          </TotalGrid>
+          <Total />
           <ConfirmButton type="button">CONFIRMAR PEDIDO</ConfirmButton>
         </CoffeeSelectedCard>
       </CoffeeSelectedSection>

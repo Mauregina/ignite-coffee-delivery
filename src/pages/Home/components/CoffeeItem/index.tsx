@@ -14,36 +14,21 @@ import {
 } from './styles'
 
 import Expresso from '../../../../assets/expresso.png'
-import { CartContext } from '../../../../App'
-
-type CoffeeType =
-  | 'tradicional'
-  | 'gelado'
-  | 'com leite'
-  | 'especial'
-  | 'alcoólico'
-
-interface CoffeeMenu {
-  id: number
-  type: CoffeeType[]
-  name: string
-  description: string
-  value: number
-}
+import { CartContext, MenuContext } from '../../../../App'
 
 interface CoffeeItemProps {
-  item: CoffeeMenu
+  coffeeId: number
 }
 
-export function CoffeeItem({ item }: CoffeeItemProps) {
+export function CoffeeItem({ coffeeId }: CoffeeItemProps) {
   const { updateCart } = useContext(CartContext)
+  const { getMenuItem } = useContext(MenuContext)
   const [quantity, setQuantity] = useState(0)
-  const itemId = item.id
 
   function handleUpdateCart(event: FormEvent) {
     event?.preventDefault()
 
-    updateCart(itemId, quantity)
+    updateCart(coffeeId, quantity)
   }
 
   function addQuantity() {
@@ -58,39 +43,50 @@ export function CoffeeItem({ item }: CoffeeItemProps) {
     })
   }
 
+  const menuItem = getMenuItem(coffeeId)
+
   return (
     <CoffeeItemContainer>
-      <CoffeeItemHeader>
-        <img src={Expresso} alt="" />
-        <div>
-          {item.type.map((type, index) => (
-            <div key={index}>
-              <span>{type.toUpperCase()}</span>
+      {menuItem && (
+        <>
+          <CoffeeItemHeader>
+            <img src={Expresso} alt="" />
+            <div>
+              {menuItem.type.map((type, index) => (
+                <div key={index}>
+                  <span>{type.toUpperCase()}</span>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </CoffeeItemHeader>
-      <CoffeeItemSection>
-        <strong>{item.name}</strong>
-        <span>{item.description}</span>
-      </CoffeeItemSection>
-      <CoffeeForm onSubmit={(e) => handleUpdateCart(e)}>
-        <p>
-          R$ <span>{item.value}</span>
-        </p>
-        <InputGroup>
-          <AddSubButton type="button" onClick={removeQuantity}>
-            <MinusIcon size={14} weight="bold" />
-          </AddSubButton>
-          <InputForm type="number" disabled step={1} value={quantity} />
-          <AddSubButton type="button" onClick={addQuantity}>
-            <PlusIcon size={14} weight="bold" />
-          </AddSubButton>
-        </InputGroup>
-        <ShopButton type="submit">
-          <ShoppingCartIcon size={22} weight="fill" />
-        </ShopButton>
-      </CoffeeForm>
+          </CoffeeItemHeader>
+          <CoffeeItemSection>
+            <strong>{menuItem.name}</strong>
+            <span>{menuItem.description}</span>
+          </CoffeeItemSection>
+          <CoffeeForm onSubmit={(e) => handleUpdateCart(e)}>
+            <p>
+              <span>
+                {new Intl.NumberFormat('pt-BR', {
+                  style: 'currency',
+                  currency: 'BRL',
+                }).format(menuItem.value)}
+              </span>
+            </p>
+            <InputGroup>
+              <AddSubButton type="button" onClick={removeQuantity}>
+                <MinusIcon size={14} weight="bold" />
+              </AddSubButton>
+              <InputForm type="number" disabled step={1} value={quantity} />
+              <AddSubButton type="button" onClick={addQuantity}>
+                <PlusIcon size={14} weight="bold" />
+              </AddSubButton>
+            </InputGroup>
+            <ShopButton type="submit">
+              <ShoppingCartIcon size={22} weight="fill" />
+            </ShopButton>
+          </CoffeeForm>
+        </>
+      )}
     </CoffeeItemContainer>
   )
 }

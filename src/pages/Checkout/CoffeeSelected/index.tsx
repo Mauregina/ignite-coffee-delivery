@@ -15,7 +15,7 @@ import {
 
 import Expresso from '../../../assets/expresso.png'
 import { useContext } from 'react'
-import { CartContext } from '../../../App'
+import { CartContext, MenuContext } from '../../../App'
 
 interface CoffeeSelectedProps {
   coffeeId: number
@@ -23,7 +23,15 @@ interface CoffeeSelectedProps {
 
 export function CoffeeSelected({ coffeeId }: CoffeeSelectedProps) {
   const { getCartItemQuantity, updateCart } = useContext(CartContext)
+  const { getMenuItem } = useContext(MenuContext)
+
   const cartItemQuantity = getCartItemQuantity(coffeeId)
+  const menuItem = getMenuItem(coffeeId)
+  const totalItemValue = (menuItem ? menuItem.value : 0) * cartItemQuantity
+  const formattedTotalItemValue = new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  }).format(totalItemValue)
 
   function addQuantity() {
     if (cartItemQuantity === 9) return
@@ -48,7 +56,7 @@ export function CoffeeSelected({ coffeeId }: CoffeeSelectedProps) {
       <ItemElement>
         <CoffeeImg src={Expresso} alt="" />
         <Detail>
-          <span>Expresso Tradicional</span>
+          <span>{menuItem?.name}</span>
           <DetailAction>
             <InputGroup>
               <AddSubButton type="button" onClick={removeQuantity}>
@@ -66,7 +74,7 @@ export function CoffeeSelected({ coffeeId }: CoffeeSelectedProps) {
           </DetailAction>
         </Detail>
       </ItemElement>
-      <strong>R$ 9,90</strong>
+      <strong>{formattedTotalItemValue}</strong>
     </OrderValueItem>
   )
 }

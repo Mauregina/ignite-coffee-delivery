@@ -14,13 +14,12 @@ import { useContext } from 'react'
 import { CartContext } from '../../App'
 
 export function Header() {
-  const { cart } = useContext(CartContext)
+  const { getCartTotalQuantity } = useContext(CartContext)
 
-  const totalQuantity =
-    cart?.cartItems.reduce((total, item) => total + item.quantity, 0) || 0
+  const totalQuantity = getCartTotalQuantity()
   const isCartEmpty = totalQuantity === 0
 
-  console.log('HEADER', cart)
+  console.log('HEADER')
 
   return (
     <HeaderContainer>

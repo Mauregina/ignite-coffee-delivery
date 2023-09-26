@@ -234,28 +234,6 @@ export const CoffeeSelectedCard = styled.div`
   gap: 1.5rem;
 `
 
-export const TotalGrid = styled.div`
-  display: grid;
-  grid-template-columns: auto auto;
-  row-gap: 0.75rem;
-
-  align-items: center;
-`
-interface TotalGridTextProps {
-  alignRight?: boolean
-  sizeSmall?: boolean
-  bold?: boolean
-}
-
-export const TotalGridText = styled.span<TotalGridTextProps>`
-  text-align: ${(props) => (props.alignRight ? 'end' : 'start')};
-  font-size: ${(props) => props.sizeSmall && '0.875rem'};
-
-  font-size: ${(props) => props.bold && '1.25rem'};
-  font-weight: ${(props) => props.bold && 700};
-  color: ${(props) => props.bold && props.theme['base-subtitle']};
-`
-
 export const ConfirmButton = styled.button`
   border-radius: 6px;
   border: 0;

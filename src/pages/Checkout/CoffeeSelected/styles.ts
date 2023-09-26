@@ -24,6 +24,10 @@ export const Detail = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+
+  span {
+    color: ${(props) => props.theme['base-subtitle']};
+  }
 `
 export const DetailAction = styled.div`
   display: flex;
