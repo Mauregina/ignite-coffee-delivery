@@ -13,7 +13,6 @@ import {
   ShoppingCartIcon,
 } from './styles'
 
-import Expresso from '../../../../assets/expresso.png'
 import { CartContext, MenuContext } from '../../../../App'
 
 interface CoffeeItemProps {
@@ -51,7 +50,7 @@ export function CoffeeItem({ coffeeId }: CoffeeItemProps) {
       {menuItem && (
         <>
           <CoffeeItemHeader>
-            <img src={Expresso} alt="" />
+            <img src={menuItem.image} alt="" />
             <div>
               {menuItem.type.map((type, index) => (
                 <div key={index}>

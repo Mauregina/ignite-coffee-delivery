@@ -6,6 +6,21 @@ import { GlobalStyle } from './styles/global'
 import { defaultTheme } from './styles/themes/default'
 import { createContext, useState } from 'react'
 
+import Americano from '../src/assets/coffee/americano.png'
+import Arabe from '../src/assets/coffee/arabe.png'
+import Cappuccino from '../src/assets/coffee/cappuccino.png'
+import Chocolate from '../src/assets/coffee/chocolate.png'
+import Leite from '../src/assets/coffee/leite.png'
+import Cubano from '../src/assets/coffee/cubano.png'
+import Cremoso from '../src/assets/coffee/cremoso.png'
+import Expresso from '../src/assets/coffee/expresso.png'
+import Gelado from '../src/assets/coffee/gelado.png'
+import Havaiano from '../src/assets/coffee/havaiano.png'
+import Irlandes from '../src/assets/coffee/irlandes.png'
+import Latte from '../src/assets/coffee/latte.png'
+import Macchiato from '../src/assets/coffee/macchiato.png'
+import Mochaccino from '../src/assets/coffee/mochaccino.png'
+
 interface CartItem {
   coffeeId: number
   quantity: number
@@ -59,6 +74,7 @@ interface CoffeeMenu {
   name: string
   description: string
   value: number
+  image: string
 }
 
 interface MenuContextType {
@@ -138,6 +154,7 @@ export function App() {
       name: 'Expresso Tradicional',
       description: 'O tradicional café feito com água quente e grãos moídos',
       value: 5.9,
+      image: Expresso,
     },
     {
       id: 2,
@@ -145,6 +162,7 @@ export function App() {
       name: 'Expresso Americano',
       description: 'Expresso diluído, menos intenso que o tradicional',
       value: 7.9,
+      image: Americano,
     },
     {
       id: 3,
@@ -152,6 +170,7 @@ export function App() {
       name: 'Expresso Cremoso',
       description: 'Café expresso tradicional com espuma cremosa',
       value: 8.9,
+      image: Cremoso,
     },
     {
       id: 4,
@@ -159,6 +178,7 @@ export function App() {
       name: 'Expresso Gelado',
       description: 'Bebida preparada com café expresso e cubos de gelo',
       value: 8.9,
+      image: Gelado,
     },
     {
       id: 5,
@@ -166,6 +186,7 @@ export function App() {
       name: 'Café com Leite',
       description: 'Meio a meio de expresso tradicional com leite vaporizado',
       value: 5.9,
+      image: Leite,
     },
     {
       id: 6,
@@ -174,14 +195,16 @@ export function App() {
       description:
         'Uma dose de café expresso com o dobro de leite e espuma cremosa',
       value: 14.9,
+      image: Latte,
     },
     {
       id: 7,
       type: ['tradicional', 'com leite'],
-      name: 'Capuccino',
+      name: 'Cappuccino',
       description:
         'Bebida com canela feita de doses iguais de café, leite e espuma',
       value: 15.9,
+      image: Cappuccino,
     },
     {
       id: 8,
@@ -190,13 +213,15 @@ export function App() {
       description:
         'Café expresso misturado com um pouco de leite quente e espuma',
       value: 14.9,
+      image: Macchiato,
     },
     {
       id: 9,
       type: ['tradicional', 'com leite'],
-      name: 'Mocaccino',
+      name: 'Mochaccino',
       description: 'Café expresso com calda de chocolate, pouco leite e espuma',
       value: 16.9,
+      image: Mochaccino,
     },
     {
       id: 10,
@@ -205,6 +230,7 @@ export function App() {
       description:
         'Bebida feita com chocolate dissolvido no leite quente e café',
       value: 11.9,
+      image: Chocolate,
     },
     {
       id: 11,
@@ -213,6 +239,7 @@ export function App() {
       description:
         'Drink gelado de café expresso com rum, creme de leite e hortelã',
       value: 23.9,
+      image: Cubano,
     },
     {
       id: 12,
@@ -220,6 +247,7 @@ export function App() {
       name: 'Havaiano',
       description: 'Bebida adocicada preparada com café e leite de coco',
       value: 20.9,
+      image: Havaiano,
     },
     {
       id: 13,
@@ -227,6 +255,7 @@ export function App() {
       name: 'Árabe',
       description: 'Bebida preparada com grãos de café árabe e especiarias',
       value: 20.9,
+      image: Arabe,
     },
     {
       id: 14,
@@ -234,6 +263,7 @@ export function App() {
       name: 'Irlandês',
       description: 'Bebida a base de café, uísque irlandês, açúcar e chantilly',
       value: 26.9,
+      image: Irlandes,
     },
   ]
 
