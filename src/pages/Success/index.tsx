@@ -14,8 +14,13 @@ import {
 } from './styles'
 
 import SuccessImg from '../../assets/success.svg'
+import { useContext } from 'react'
+import { CartContext, paymentTypeString } from '../../App'
 
 export function Success() {
+  const { cart } = useContext(CartContext)
+  const { street, number, city, state, neighborhood } = cart.address!
+
   return (
     <SuccessContainer>
       <MessageSection>
@@ -30,9 +35,9 @@ export function Success() {
             </IconContainer>
             <ResumeOrderItemText>
               <div>
-                Entrega em <strong>Rua João Daniel Martinelli, 102</strong>
+                Entrega em <strong>{`${street}, ${number}`}</strong>
               </div>
-              <span>Farrapos - Porto Alegre, RS</span>
+              <span>{`${neighborhood} - ${city}, ${state}`}</span>
             </ResumeOrderItemText>
           </ResumeOrderItem>
           <ResumeOrderItem>
@@ -50,7 +55,7 @@ export function Success() {
             </IconContainer>
             <ResumeOrderItemText>
               <div>Pagamento na entrega</div>
-              <strong>Cartão de Crédito</strong>
+              <strong>{paymentTypeString[cart.payment!]}</strong>
             </ResumeOrderItemText>
           </ResumeOrderItem>
         </ResumeOrder>

@@ -11,10 +11,28 @@ interface CartItem {
   quantity: number
 }
 
+interface Address {
+  zip: string
+  street: string
+  number: string
+  complement?: string
+  neighborhood: string
+  city: string
+  state: string
+}
+
+export type PaymentType = 'credit' | 'debit' | 'money'
+
+export const paymentTypeString = {
+  credit: 'Cartão de Crédito',
+  debit: 'Cartão de Dédito',
+  money: 'Dinheiro',
+}
+
 interface Cart {
   cartItems: CartItem[]
-  payment?: string
-  street?: string
+  payment?: PaymentType
+  address?: Address
 }
 
 interface CartContextType {
@@ -23,7 +41,7 @@ interface CartContextType {
   isCartOpen: boolean
   getQuantityByCartItem: (coffeeId: number) => number
   updateCart: (coffeeId: number, quantity: number) => void
-  closeCart: () => void
+  closeCart: (payment: PaymentType, address: Address) => void
 }
 
 export const CartContext = createContext({} as CartContextType)
@@ -104,10 +122,11 @@ export function App() {
     setCart(updatedCart)
   }
 
-  function closeCart() {
+  function closeCart(payment: PaymentType, address: Address) {
     const updatedCart: Cart = {
       ...cart,
-      payment: 'ok',
+      payment,
+      address,
     }
     setCart(updatedCart)
   }

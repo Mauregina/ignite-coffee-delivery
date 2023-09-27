@@ -1,6 +1,6 @@
 import { Minus, Plus, Trash } from 'phosphor-react'
 import styled from 'styled-components'
-import { BaseButton } from '../styles'
+import { BaseButton } from '../../styles'
 
 export const OrderValueItem = styled.div`
   border-bottom: solid 1px ${(props) => props.theme['base-button']};

@@ -25,6 +25,8 @@ export const BaseButton = styled.button`
   border-radius: 6px;
   border: 0;
 
+  text-transform: uppercase;
+
   font-size: 0.75rem;
   color: ${(props) => props.theme['base-text']};
   background-color: ${(props) => props.theme['base-button']};

@@ -30,9 +30,9 @@ import {
   Form,
   ErrorContainer,
 } from './styles'
-import { CartContext } from '../../App'
-import { CoffeeSelected } from './CoffeeSelected'
-import { Total } from './Total'
+import { CartContext, PaymentType, paymentTypeString } from '../../App'
+import { CoffeeSelected } from './components/CoffeeSelected'
+import { Total } from './components/Total'
 
 const checkoutFormValidationSchema = zod.object({
   zip: zod.string().max(8, 'CEP inválido'),
@@ -89,7 +89,7 @@ export function Checkout() {
   const { cart, closeCart } = useContext(CartContext)
   const navigate = useNavigate()
 
-  const [paymentType, setPaymentType] = useState(0)
+  const [paymentType, setPaymentType] = useState<PaymentType>('credit')
 
   const zip = watch('zip')
   const street = watch('street')
@@ -111,9 +111,7 @@ export function Checkout() {
     !state
 
   function handleConfirmOrder(data: CheckoutFormData) {
-    console.log('SUBMETER', data)
-    closeCart()
-
+    closeCart(paymentType, data)
     navigate('/success')
   }
 
@@ -201,27 +199,27 @@ export function Checkout() {
               <PayAction>
                 <PayButton
                   type="button"
-                  onClick={() => setPaymentType(0)}
-                  selected={paymentType === 0}
+                  onClick={() => setPaymentType('credit')}
+                  selected={paymentType === 'credit'}
                 >
                   <BankIcon size={16} />
-                  CARTÃO DE CRÉDITO
+                  {paymentTypeString.credit}
                 </PayButton>
                 <PayButton
                   type="button"
-                  onClick={() => setPaymentType(1)}
-                  selected={paymentType === 1}
+                  onClick={() => setPaymentType('debit')}
+                  selected={paymentType === 'debit'}
                 >
                   <BankIcon size={16} />
-                  CARTÃO DE DÉBITO
+                  {paymentTypeString.debit}
                 </PayButton>
                 <PayButton
                   type="button"
-                  onClick={() => setPaymentType(2)}
-                  selected={paymentType === 2}
+                  onClick={() => setPaymentType('money')}
+                  selected={paymentType === 'money'}
                 >
                   <MoneyIcon size={16} />
-                  DINHEIRO
+                  {paymentTypeString.money}
                 </PayButton>
               </PayAction>
             </OtherInfoCard>

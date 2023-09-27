@@ -13,9 +13,9 @@ import {
   TrashIcon,
 } from './styles'
 
-import Expresso from '../../../assets/expresso.png'
+import Expresso from '../../../../assets/expresso.png'
 import { useContext } from 'react'
-import { CartContext, MenuContext } from '../../../App'
+import { CartContext, MenuContext } from '../../../../App'
 
 interface CoffeeSelectedProps {
   coffeeId: number
