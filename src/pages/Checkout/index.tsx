@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useForm } from 'react-hook-form'
+import { FormProvider, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
 
@@ -23,16 +23,17 @@ import {
   BankIcon,
   MoneyIcon,
   MapPinLineIcon,
-  AddressInfo,
-  Input,
-  ComplementContainer,
-  InputComplement,
+  // AddressInfo,
+  // Input,
+  // ComplementContainer,
+  // InputComplement,
   Form,
   ErrorContainer,
 } from './styles'
 import { CartContext, PaymentType, paymentTypeString } from '../../App'
 import { CoffeeSelected } from './components/CoffeeSelected'
 import { Total } from './components/Total'
+import { AddressForm } from './components/AddressForm'
 
 const checkoutFormValidationSchema = zod.object({
   zip: zod.string().max(8, 'CEP inválido'),
@@ -82,19 +83,20 @@ const checkoutFormValidationSchema = zod.object({
 type CheckoutFormData = zod.infer<typeof checkoutFormValidationSchema>
 
 export function Checkout() {
-  const { register, handleSubmit, watch, formState } =
-    useForm<CheckoutFormData>({
-      resolver: zodResolver(checkoutFormValidationSchema),
-      defaultValues: {
-        zip: '',
-        street: '',
-        number: '',
-        complement: '',
-        neighborhood: '',
-        city: '',
-        state: '',
-      },
-    })
+  const checkoutForm = useForm<CheckoutFormData>({
+    resolver: zodResolver(checkoutFormValidationSchema),
+    defaultValues: {
+      zip: '',
+      street: '',
+      number: '',
+      complement: '',
+      neighborhood: '',
+      city: '',
+      state: '',
+    },
+  })
+  const { handleSubmit, watch, formState } = checkoutForm
+
   const { cart, closeCart } = useContext(CartContext)
   const navigate = useNavigate()
 
@@ -103,12 +105,9 @@ export function Checkout() {
   const zip = watch('zip')
   const street = watch('street')
   const number = watch('number')
-  const complement = watch('complement')
   const neighborhood = watch('neighborhood')
   const city = watch('city')
   const state = watch('state')
-
-  const isComplementEmpty = !complement
 
   const isSubmitDisable =
     cart.cartItems.length === 0 ||
@@ -144,48 +143,9 @@ export function Checkout() {
                   </TextSmall>
                 </MessageDescription>
               </MessageHeader>
-              <AddressInfo>
-                <Input
-                  type="number"
-                  id="zip"
-                  placeholder="CEP"
-                  size="12.5rem"
-                  {...register('zip')}
-                />
-                <Input placeholder="Rua" {...register('street')} />
-                <div>
-                  <Input
-                    id="number"
-                    placeholder="Número"
-                    size="12.5rem"
-                    {...register('number')}
-                  />
-                  <ComplementContainer>
-                    <InputComplement
-                      id="complement"
-                      placeholder="Complemento"
-                      {...register('complement')}
-                    />
-                    {isComplementEmpty && <span>Opcional</span>}
-                  </ComplementContainer>
-                </div>
-                <div>
-                  <Input
-                    id="neighborhood"
-                    placeholder="Bairro"
-                    size="12.5rem"
-                    {...register('neighborhood')}
-                  />
-                  <Input id="city" placeholder="Cidade" {...register('city')} />
-                  <Input
-                    id="state"
-                    placeholder="UF"
-                    size="3.75rem"
-                    maxLength={2}
-                    {...register('state')}
-                  />
-                </div>
-              </AddressInfo>
+              <FormProvider {...checkoutForm}>
+                <AddressForm />
+              </FormProvider>
               {hasErrorsMessage && (
                 <ErrorContainer>
                   {errorsMessage.map((error, index) => (
