@@ -21,9 +21,10 @@ interface CoffeeItemProps {
 }
 
 export function CoffeeItem({ coffeeId }: CoffeeItemProps) {
-  const { updateCart } = useContext(CartContext)
+  const { updateCart, getQuantityByCartItem } = useContext(CartContext)
   const { getMenuItem } = useContext(MenuContext)
-  const [quantity, setQuantity] = useState(0)
+  const quantityItem = getQuantityByCartItem(coffeeId)
+  const [quantity, setQuantity] = useState(quantityItem)
 
   function handleUpdateCart(event: FormEvent) {
     event?.preventDefault()

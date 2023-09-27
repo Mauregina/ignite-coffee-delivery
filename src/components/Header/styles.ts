@@ -15,24 +15,28 @@ export const ActionContainer = styled.div`
   align-items: center;
   gap: 0.75rem;
 `
-
-interface CartLinkProps {
+interface CartContainerProps {
   disabled: boolean
 }
 
-export const CartLink = styled(Link)<CartLinkProps>`
+export const CartContainer = styled.div<CartContainerProps>`
   position: relative;
+  border-radius: 6px;
+  padding: 0.5rem;
 
   display: flex;
   justify-items: center;
   align-items: center;
 
-  border-radius: 6px;
-  padding: 0.5rem;
-
   background-color: ${(props) => props.theme['brand-yellow-light']};
 
   cursor: ${(props) => props.disabled && 'not-allowed'};
+`
+
+export const CartLink = styled(Link)`
+  display: flex;
+  justify-items: center;
+  align-items: center;
 `
 
 export const ShoppingCartIcon = styled(ShoppingCart)`

@@ -7,6 +7,7 @@ import {
   LocationContainer,
   MapIcon,
   CartCount,
+  CartContainer,
 } from './styles'
 
 import Logo from '../../assets/logo.svg'
@@ -26,10 +27,16 @@ export function Header() {
           <MapIcon size={22} weight="fill" />
           <span>Manaus, AM</span>
         </LocationContainer>
-        <CartLink to="/checkout" disabled={!isCartOpen}>
-          <ShoppingCartIcon size={22} weight="fill" />
-          {isCartOpen && <CartCount>{totalQuantityCartItems}</CartCount>}
-        </CartLink>
+        <CartContainer disabled={!isCartOpen}>
+          {isCartOpen ? (
+            <CartLink to="/checkout">
+              <ShoppingCartIcon size={22} weight="fill" />
+              <CartCount>{totalQuantityCartItems}</CartCount>
+            </CartLink>
+          ) : (
+            <ShoppingCartIcon size={22} weight="fill" />
+          )}
+        </CartContainer>
       </ActionContainer>
     </HeaderContainer>
   )
