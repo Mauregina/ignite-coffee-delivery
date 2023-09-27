@@ -32,7 +32,7 @@ export const CartLink = styled(Link)<CartLinkProps>`
 
   background-color: ${(props) => props.theme['brand-yellow-light']};
 
-  pointer-events: ${(props) => (props.disabled ? 'none' : '')};
+  cursor: ${(props) => props.disabled && 'not-allowed'};
 `
 
 export const ShoppingCartIcon = styled(ShoppingCart)`

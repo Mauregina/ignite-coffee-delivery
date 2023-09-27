@@ -22,10 +22,10 @@ interface CoffeeSelectedProps {
 }
 
 export function CoffeeSelected({ coffeeId }: CoffeeSelectedProps) {
-  const { getCartItemQuantity, updateCart } = useContext(CartContext)
+  const { getQuantityByCartItem, updateCart } = useContext(CartContext)
   const { getMenuItem } = useContext(MenuContext)
 
-  const cartItemQuantity = getCartItemQuantity(coffeeId)
+  const cartItemQuantity = getQuantityByCartItem(coffeeId)
   const menuItem = getMenuItem(coffeeId)
   const totalItemValue = (menuItem ? menuItem.value : 0) * cartItemQuantity
   const formattedTotalItemValue = new Intl.NumberFormat('pt-BR', {

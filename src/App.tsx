@@ -19,9 +19,11 @@ interface Cart {
 
 interface CartContextType {
   cart: Cart
-  getCartItemQuantity: (coffeeId: number) => number
-  getCartTotalQuantity: () => number
+  totalQuantityCartItems: number
+  isCartOpen: boolean
+  getQuantityByCartItem: (coffeeId: number) => number
   updateCart: (coffeeId: number, quantity: number) => void
+  closeCart: () => void
 }
 
 export const CartContext = createContext({} as CartContextType)
@@ -51,15 +53,16 @@ export const MenuContext = createContext({} as MenuContextType)
 export function App() {
   const [cart, setCart] = useState<Cart>({ cartItems: [] })
 
-  function getCartItemQuantity(coffeeId: number) {
+  const isCartWithItems = cart.cartItems.length > 0
+  const isCartWithPayment = 'payment' in cart
+  const isCartOpen = isCartWithItems && !isCartWithPayment
+
+  const totalQuantityCartItems =
+    cart?.cartItems.reduce((total, item) => total + item.quantity, 0) || 0
+
+  function getQuantityByCartItem(coffeeId: number) {
     const cartItem = cart.cartItems.find((i) => i.coffeeId === coffeeId)
     return cartItem ? cartItem.quantity : 0
-  }
-
-  function getCartTotalQuantity() {
-    return (
-      cart?.cartItems.reduce((total, item) => total + item.quantity, 0) || 0
-    )
   }
 
   function updateCart(coffeeId: number, quantity: number) {
@@ -97,6 +100,14 @@ export function App() {
           quantity,
         },
       ],
+    }
+    setCart(updatedCart)
+  }
+
+  function closeCart() {
+    const updatedCart: Cart = {
+      ...cart,
+      payment: 'ok',
     }
     setCart(updatedCart)
   }
@@ -219,9 +230,11 @@ export function App() {
           <CartContext.Provider
             value={{
               cart,
+              totalQuantityCartItems,
+              isCartOpen,
               updateCart,
-              getCartItemQuantity,
-              getCartTotalQuantity,
+              closeCart,
+              getQuantityByCartItem,
             }}
           >
             <Router />

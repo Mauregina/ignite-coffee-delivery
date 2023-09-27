@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
@@ -35,11 +36,11 @@ import { Total } from './Total'
 
 const checkoutFormValidationSchema = zod.object({
   zip: zod.string().max(8, 'CEP inválido'),
-  street: zod.string(),
-  number: zod.string(),
+  street: zod.string().min(1),
+  number: zod.string().min(1),
   complement: zod.string(),
-  neighborhood: zod.string(),
-  city: zod.string(),
+  neighborhood: zod.string().min(1),
+  city: zod.string().min(1),
   state: zod
     .string()
     .refine(
@@ -78,11 +79,15 @@ const checkoutFormValidationSchema = zod.object({
     ),
 })
 
+type CheckoutFormData = zod.infer<typeof checkoutFormValidationSchema>
+
 export function Checkout() {
-  const { register, handleSubmit, watch, formState } = useForm({
-    resolver: zodResolver(checkoutFormValidationSchema),
-  })
-  const { cart } = useContext(CartContext)
+  const { register, handleSubmit, watch, formState } =
+    useForm<CheckoutFormData>({
+      resolver: zodResolver(checkoutFormValidationSchema),
+    })
+  const { cart, closeCart } = useContext(CartContext)
+  const navigate = useNavigate()
 
   const [paymentType, setPaymentType] = useState(0)
 
@@ -105,9 +110,11 @@ export function Checkout() {
     !city ||
     !state
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  function handleConfirmOrder(data: any) {
+  function handleConfirmOrder(data: CheckoutFormData) {
     console.log('SUBMETER', data)
+    closeCart()
+
+    navigate('/success')
   }
 
   const errors = formState.errors
