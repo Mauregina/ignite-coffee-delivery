@@ -72,8 +72,7 @@ export function App() {
   const [cart, setCart] = useState<Cart>({ cartItems: [] })
 
   const isCartWithItems = cart.cartItems.length > 0
-  const isCartWithPayment = 'payment' in cart
-  const isCartOpen = isCartWithItems && !isCartWithPayment
+  const isCartOpen = isCartWithItems
 
   const totalQuantityCartItems =
     cart?.cartItems.reduce((total, item) => total + item.quantity, 0) || 0
@@ -125,6 +124,7 @@ export function App() {
   function closeCart(payment: PaymentType, address: Address) {
     const updatedCart: Cart = {
       ...cart,
+      cartItems: [],
       payment,
       address,
     }

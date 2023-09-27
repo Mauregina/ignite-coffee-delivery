@@ -85,6 +85,15 @@ export function Checkout() {
   const { register, handleSubmit, watch, formState } =
     useForm<CheckoutFormData>({
       resolver: zodResolver(checkoutFormValidationSchema),
+      defaultValues: {
+        zip: '',
+        street: '',
+        number: '',
+        complement: '',
+        neighborhood: '',
+        city: '',
+        state: '',
+      },
     })
   const { cart, closeCart } = useContext(CartContext)
   const navigate = useNavigate()
@@ -99,7 +108,7 @@ export function Checkout() {
   const city = watch('city')
   const state = watch('state')
 
-  const isComplementEmpty = complement === undefined || !complement
+  const isComplementEmpty = !complement
 
   const isSubmitDisable =
     cart.cartItems.length === 0 ||
