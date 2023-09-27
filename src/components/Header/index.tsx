@@ -15,7 +15,8 @@ import { useContext } from 'react'
 import { CartContext } from '../../App'
 
 export function Header() {
-  const { totalQuantityCartItems, isCartOpen } = useContext(CartContext)
+  const { totalQuantityCartItems, isCartOpen, cart } = useContext(CartContext)
+  const { address } = cart
 
   return (
     <HeaderContainer>
@@ -25,7 +26,7 @@ export function Header() {
       <ActionContainer>
         <LocationContainer>
           <MapIcon size={22} weight="fill" />
-          <span>Manaus, AM</span>
+          {address && <span>{`${address.city}, ${address.state}`}</span>}
         </LocationContainer>
         <CartContainer disabled={!isCartOpen}>
           {isCartOpen ? (
