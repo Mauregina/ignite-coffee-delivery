@@ -23,17 +23,18 @@ import {
   BankIcon,
   MoneyIcon,
   MapPinLineIcon,
-  // AddressInfo,
-  // Input,
-  // ComplementContainer,
-  // InputComplement,
   Form,
   ErrorContainer,
 } from './styles'
-import { CartContext, PaymentType, paymentTypeString } from '../../App'
+
 import { CoffeeSelected } from './components/CoffeeSelected'
 import { Total } from './components/Total'
 import { AddressForm } from './components/AddressForm'
+import {
+  CartContext,
+  PaymentType,
+  paymentTypeString,
+} from '../../contexts/CartContext'
 
 const checkoutFormValidationSchema = zod.object({
   zip: zod.string().max(8, 'CEP inválido'),

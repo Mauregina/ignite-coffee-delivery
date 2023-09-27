@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import { TextItem, TextTotal, TotalGrid } from './styles'
-import { CartContext, MenuContext } from '../../../../App'
+import { MenuContext } from '../../../../App'
+import { CartContext } from '../../../../contexts/CartContext'
 
 export function Total() {
   const { cart } = useContext(CartContext)

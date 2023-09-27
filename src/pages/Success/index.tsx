@@ -15,7 +15,7 @@ import {
 
 import SuccessImg from '../../assets/success.svg'
 import { useContext } from 'react'
-import { CartContext, paymentTypeString } from '../../App'
+import { CartContext, paymentTypeString } from '../../contexts/CartContext'
 
 export function Success() {
   const { cart } = useContext(CartContext)
