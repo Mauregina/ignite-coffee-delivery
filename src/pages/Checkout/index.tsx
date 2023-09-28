@@ -74,7 +74,7 @@ const checkoutFormValidationSchema = zod.object({
           'SE',
           'SP',
           'TO',
-        ].includes(value),
+        ].includes(value.toUpperCase()),
       {
         message: 'UF inválida',
       },
@@ -120,7 +120,8 @@ export function Checkout() {
     !state
 
   function handleConfirmOrder(data: CheckoutFormData) {
-    closeCart(paymentType, data)
+    const newData = { ...data, state: state.toUpperCase() }
+    closeCart(paymentType, newData)
     navigate('/success')
   }
 

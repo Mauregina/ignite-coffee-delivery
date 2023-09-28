@@ -59,53 +59,57 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   }
 
   function updateCart(coffeeId: number, quantity: number) {
-    const coffeeItemInCartAlready =
+    const itemInCart =
       cart.cartItems.findIndex((i) => i.coffeeId === coffeeId) !== -1
 
-    if (quantity === 0 && !coffeeItemInCartAlready) return
+    if (quantity === 0 && !itemInCart) return
 
-    let updatedCart: Cart
-
-    if (coffeeItemInCartAlready) {
+    if (itemInCart) {
       if (quantity === 0) {
-        updatedCart = {
-          ...cart,
-          cartItems: cart.cartItems.filter((i) => i.coffeeId !== coffeeId),
-        }
+        setCart((state) => {
+          return {
+            ...state,
+            cartItems: cart.cartItems.filter((i) => i.coffeeId !== coffeeId),
+          }
+        })
       } else {
-        updatedCart = {
-          ...cart,
-          cartItems: cart.cartItems.map((i) =>
-            i.coffeeId === coffeeId ? { ...i, quantity } : i,
-          ),
-        }
+        setCart((state) => {
+          return {
+            ...state,
+            cartItems: cart.cartItems.map((i) =>
+              i.coffeeId === coffeeId ? { ...i, quantity } : i,
+            ),
+          }
+        })
       }
-      setCart(updatedCart)
       return
     }
 
-    updatedCart = {
-      ...cart,
-      cartItems: [
-        ...cart.cartItems,
-        {
-          coffeeId,
-          quantity,
-        },
-      ],
-    }
-    setCart(updatedCart)
+    setCart((state) => {
+      return {
+        ...state,
+        cartItems: [
+          ...cart.cartItems,
+          {
+            coffeeId,
+            quantity,
+          },
+        ],
+      }
+    })
   }
 
   function closeCart(payment: PaymentType, address: Address) {
-    const updatedCart: Cart = {
-      ...cart,
-      cartItems: [],
-      payment,
-      address,
-    }
-    setCart(updatedCart)
+    setCart((state) => {
+      return {
+        ...state,
+        cartItems: [],
+        payment,
+        address,
+      }
+    })
   }
+
   return (
     <CartContext.Provider
       value={{

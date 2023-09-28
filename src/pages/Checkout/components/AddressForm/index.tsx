@@ -5,17 +5,12 @@ import {
   Input,
   InputComplement,
 } from './styles'
-import { ChangeEvent } from 'react'
 
 export function AddressForm() {
   const { register, watch } = useFormContext()
 
   const complement = watch('complement')
   const isComplementEmpty = !complement
-
-  function handleStateInput(e: ChangeEvent<HTMLInputElement>) {
-    e.target.value = e.target.value.toUpperCase()
-  }
 
   return (
     <AddressInfo>
@@ -57,7 +52,6 @@ export function AddressForm() {
           size="3.75rem"
           maxLength={2}
           {...register('state')}
-          onChange={handleStateInput}
         />
       </div>
     </AddressInfo>
