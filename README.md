@@ -22,3 +22,9 @@ Conceitos praticados:
 - Listas e chaves no ReactJS
 - Propriedades
 - Componentização
+
+<p float="left">
+ <img src="https://github.com/Mauregina/ignite-coffee-delivery/blob/master/public/prototipo1.png" width="800" />
+ <img src="https://github.com/Mauregina/ignite-coffee-delivery/blob/master/public/prototipo2.png" width="800" />
+ <img src="https://github.com/Mauregina/ignite-coffee-delivery/blob/master/public/prototipo3.png" width="800" />
+</p>
