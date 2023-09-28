@@ -47,40 +47,44 @@ interface CartContextProviderProps {
 export function CartContextProvider({ children }: CartContextProviderProps) {
   const [cart, dispatch] = useReducer(
     (state: Cart, action: any) => {
-      if (action.type === 'ADD_ITEM') {
-        return {
-          ...state,
-          cartItems: [
-            ...state.cartItems,
-            {
-              coffeeId: action.payload.coffeeId,
-              quantity: action.payload.quantity,
-            },
-          ],
-        }
+      switch (action.type) {
+        case 'ADD_ITEM':
+          return {
+            ...state,
+            cartItems: [
+              ...state.cartItems,
+              {
+                coffeeId: action.payload.coffeeId,
+                quantity: action.payload.quantity,
+              },
+            ],
+          }
+        case 'UPDATE_ITEM':
+          return {
+            ...state,
+            cartItems: state.cartItems.map((i) =>
+              i.coffeeId === action.payload.coffeeId
+                ? { ...i, quantity: action.payload.quantity }
+                : i,
+            ),
+          }
+        case 'DELETE_ITEM':
+          return {
+            ...state,
+            cartItems: state.cartItems.filter(
+              (i) => i.coffeeId !== action.payload.coffeeId,
+            ),
+          }
+        case 'CLOSE_CART':
+          return {
+            ...state,
+            cartItems: [],
+            payment: action.payload.payment,
+            address: action.payload.address,
+          }
+        default:
+          return state
       }
-
-      if (action.type === 'UPDATE_ITEM') {
-        return {
-          ...state,
-          cartItems: state.cartItems.map((i) =>
-            i.coffeeId === action.payload.coffeeId
-              ? { ...i, quantity: action.payload.quantity }
-              : i,
-          ),
-        }
-      }
-
-      if (action.type === 'DELETE_ITEM') {
-        return {
-          ...state,
-          cartItems: state.cartItems.filter(
-            (i) => i.coffeeId !== action.payload.coffeeId,
-          ),
-        }
-      }
-
-      return state
     },
     { cartItems: [] },
   )
