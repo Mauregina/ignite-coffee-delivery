@@ -14,8 +14,8 @@ import {
 } from './styles'
 
 import { useContext } from 'react'
-import { MenuContext } from '../../../../App'
 import { CartContext } from '../../../../contexts/CartContext'
+import { MenuContext } from '../../../../contexts/MenuContext'
 
 interface CoffeeSelectedProps {
   coffeeId: number

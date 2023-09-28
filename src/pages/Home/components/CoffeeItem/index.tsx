@@ -13,8 +13,8 @@ import {
   ShoppingCartIcon,
 } from './styles'
 
-import { MenuContext } from '../../../../App'
 import { CartContext } from '../../../../contexts/CartContext'
+import { MenuContext } from '../../../../contexts/MenuContext'
 
 interface CoffeeItemProps {
   coffeeId: number
