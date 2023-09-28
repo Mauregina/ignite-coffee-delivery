@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useState } from 'react'
+import { ReactNode, createContext, useReducer } from 'react'
 
 interface CartItem {
   coffeeId: number
@@ -45,7 +45,45 @@ interface CartContextProviderProps {
 }
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
-  const [cart, setCart] = useState<Cart>({ cartItems: [] })
+  const [cart, dispatch] = useReducer(
+    (state: Cart, action: any) => {
+      if (action.type === 'ADD_ITEM') {
+        return {
+          ...state,
+          cartItems: [
+            ...state.cartItems,
+            {
+              coffeeId: action.payload.coffeeId,
+              quantity: action.payload.quantity,
+            },
+          ],
+        }
+      }
+
+      if (action.type === 'UPDATE_ITEM') {
+        return {
+          ...state,
+          cartItems: state.cartItems.map((i) =>
+            i.coffeeId === action.payload.coffeeId
+              ? { ...i, quantity: action.payload.quantity }
+              : i,
+          ),
+        }
+      }
+
+      if (action.type === 'DELETE_ITEM') {
+        return {
+          ...state,
+          cartItems: state.cartItems.filter(
+            (i) => i.coffeeId !== action.payload.coffeeId,
+          ),
+        }
+      }
+
+      return state
+    },
+    { cartItems: [] },
+  )
 
   const isCartWithItems = cart.cartItems.length > 0
   const isCartOpen = isCartWithItems
@@ -59,54 +97,37 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   }
 
   function updateCart(coffeeId: number, quantity: number) {
-    const itemInCart =
-      cart.cartItems.findIndex((i) => i.coffeeId === coffeeId) !== -1
+    const isNewItem =
+      cart.cartItems.findIndex((i) => i.coffeeId === coffeeId) === -1
+    const isQuantityInformedZero = quantity === 0
 
-    if (quantity === 0 && !itemInCart) return
+    if (isQuantityInformedZero && isNewItem) return
 
-    if (itemInCart) {
-      if (quantity === 0) {
-        setCart((state) => {
-          return {
-            ...state,
-            cartItems: cart.cartItems.filter((i) => i.coffeeId !== coffeeId),
-          }
-        })
-      } else {
-        setCart((state) => {
-          return {
-            ...state,
-            cartItems: cart.cartItems.map((i) =>
-              i.coffeeId === coffeeId ? { ...i, quantity } : i,
-            ),
-          }
-        })
-      }
+    if (isNewItem) {
+      dispatch({
+        type: 'ADD_ITEM',
+        payload: { coffeeId, quantity },
+      })
       return
     }
 
-    setCart((state) => {
-      return {
-        ...state,
-        cartItems: [
-          ...cart.cartItems,
-          {
-            coffeeId,
-            quantity,
-          },
-        ],
-      }
-    })
+    if (isQuantityInformedZero) {
+      dispatch({
+        type: 'DELETE_ITEM',
+        payload: { coffeeId },
+      })
+    } else {
+      dispatch({
+        type: 'UPDATE_ITEM',
+        payload: { coffeeId, quantity },
+      })
+    }
   }
 
   function closeCart(payment: PaymentType, address: Address) {
-    setCart((state) => {
-      return {
-        ...state,
-        cartItems: [],
-        payment,
-        address,
-      }
+    dispatch({
+      type: 'CLOSE_CART',
+      payload: { payment, address },
     })
   }
 
