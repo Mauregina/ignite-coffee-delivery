@@ -17,4 +17,4 @@ export const defaultTheme = {
   'brand-purple-dark': '#4B2995',
 
   'error-msg': '#DC3545',
-}
+} as const
