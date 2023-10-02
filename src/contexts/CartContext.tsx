@@ -1,7 +1,13 @@
 import { ReactNode, createContext, useReducer } from 'react'
 import { Address, Cart } from '../interfaces/Cart'
 import { PaymentType } from '../interfaces/Payment'
-import { ActionTypes, cartReducer } from '../reducers/cart'
+import { cartReducer } from '../reducers/cart/reducer'
+import {
+  addItemAction,
+  closeCartAction,
+  deleteItemAction,
+  updateItemAction,
+} from '../reducers/cart/actions'
 
 interface CartContextType {
   cart: Cart
@@ -40,31 +46,20 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     if (isQuantityInformedZero && isNewItem) return
 
     if (isNewItem) {
-      dispatch({
-        type: ActionTypes.ADD_ITEM,
-        payload: { coffeeId, quantity },
-      })
+      dispatch(addItemAction(coffeeId, quantity))
       return
     }
 
     if (isQuantityInformedZero) {
-      dispatch({
-        type: ActionTypes.DELETE_ITEM,
-        payload: { coffeeId },
-      })
-    } else {
-      dispatch({
-        type: ActionTypes.UPDATE_ITEM,
-        payload: { coffeeId, quantity },
-      })
+      dispatch(deleteItemAction(coffeeId))
+      return
     }
+
+    dispatch(updateItemAction(coffeeId, quantity))
   }
 
   function closeCart(payment: PaymentType, address: Address) {
-    dispatch({
-      type: ActionTypes.CLOSE_CART,
-      payload: { payment, address },
-    })
+    dispatch(closeCartAction(payment, address))
   }
 
   return (

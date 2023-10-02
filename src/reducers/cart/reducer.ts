@@ -1,11 +1,5 @@
-import { Cart } from '../interfaces/Cart'
-
-export enum ActionTypes {
-  ADD_ITEM = 'ADD_ITEM',
-  UPDATE_ITEM = 'UPDATE_ITEM',
-  DELETE_ITEM = 'DELETE_ITEM',
-  CLOSE_CART = 'CLOSE_CART',
-}
+import { Cart } from '../../interfaces/Cart'
+import { ActionTypes } from './actions'
 
 export function cartReducer(state: Cart, action: any) {
   switch (action.type) {
