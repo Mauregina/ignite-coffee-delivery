@@ -30,11 +30,8 @@ import {
 import { CoffeeSelected } from './components/CoffeeSelected'
 import { Total } from './components/Total'
 import { AddressForm } from './components/AddressForm'
-import {
-  CartContext,
-  PaymentType,
-  paymentTypeString,
-} from '../../contexts/CartContext'
+import { CartContext } from '../../contexts/CartContext'
+import { PaymentType, paymentTypeString } from '../../interfaces/Payment'
 
 const checkoutFormValidationSchema = zod.object({
   zip: zod.string().max(8, 'CEP inválido'),

@@ -1,33 +1,7 @@
 import { ReactNode, createContext, useReducer } from 'react'
-
-interface CartItem {
-  coffeeId: number
-  quantity: number
-}
-
-interface Address {
-  zip: string
-  street: string
-  number: string
-  complement?: string
-  neighborhood: string
-  city: string
-  state: string
-}
-
-export type PaymentType = 'credit' | 'debit' | 'money'
-
-export const paymentTypeString = {
-  credit: 'Cartão de Crédito',
-  debit: 'Cartão de Dédito',
-  money: 'Dinheiro',
-}
-
-interface Cart {
-  cartItems: CartItem[]
-  payment?: PaymentType
-  address?: Address
-}
+import { Address, Cart } from '../interfaces/Cart'
+import { PaymentType } from '../interfaces/Payment'
+import { cartReducer } from '../reducers/cart'
 
 interface CartContextType {
   cart: Cart
@@ -45,49 +19,7 @@ interface CartContextProviderProps {
 }
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
-  const [cart, dispatch] = useReducer(
-    (state: Cart, action: any) => {
-      switch (action.type) {
-        case 'ADD_ITEM':
-          return {
-            ...state,
-            cartItems: [
-              ...state.cartItems,
-              {
-                coffeeId: action.payload.coffeeId,
-                quantity: action.payload.quantity,
-              },
-            ],
-          }
-        case 'UPDATE_ITEM':
-          return {
-            ...state,
-            cartItems: state.cartItems.map((i) =>
-              i.coffeeId === action.payload.coffeeId
-                ? { ...i, quantity: action.payload.quantity }
-                : i,
-            ),
-          }
-        case 'DELETE_ITEM':
-          return {
-            ...state,
-            cartItems: state.cartItems.filter(
-              (i) => i.coffeeId !== action.payload.coffeeId,
-            ),
-          }
-        case 'CLOSE_CART':
-          return {
-            ...state,
-            cartItems: [],
-            payment: action.payload.payment,
-            address: action.payload.address,
-          }
-        default:
-          return state
-      }
-    },
-    { cartItems: [] },
-  )
+  const [cart, dispatch] = useReducer(cartReducer, { cartItems: [] })
 
   const isCartWithItems = cart.cartItems.length > 0
   const isCartOpen = isCartWithItems
