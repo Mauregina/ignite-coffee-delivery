@@ -1,8 +1,15 @@
 import { Cart } from '../interfaces/Cart'
 
+export enum ActionTypes {
+  ADD_ITEM = 'ADD_ITEM',
+  UPDATE_ITEM = 'UPDATE_ITEM',
+  DELETE_ITEM = 'DELETE_ITEM',
+  CLOSE_CART = 'CLOSE_CART',
+}
+
 export function cartReducer(state: Cart, action: any) {
   switch (action.type) {
-    case 'ADD_ITEM':
+    case ActionTypes.ADD_ITEM:
       return {
         ...state,
         cartItems: [
@@ -13,7 +20,7 @@ export function cartReducer(state: Cart, action: any) {
           },
         ],
       }
-    case 'UPDATE_ITEM':
+    case ActionTypes.UPDATE_ITEM:
       return {
         ...state,
         cartItems: state.cartItems.map((i) =>
@@ -22,14 +29,14 @@ export function cartReducer(state: Cart, action: any) {
             : i,
         ),
       }
-    case 'DELETE_ITEM':
+    case ActionTypes.DELETE_ITEM:
       return {
         ...state,
         cartItems: state.cartItems.filter(
           (i) => i.coffeeId !== action.payload.coffeeId,
         ),
       }
-    case 'CLOSE_CART':
+    case ActionTypes.CLOSE_CART:
       return {
         ...state,
         cartItems: [],
