@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useReducer } from 'react'
+import { ReactNode, createContext, useEffect, useReducer } from 'react'
 import { Address, Cart } from '../interfaces/Cart'
 import { PaymentType } from '../interfaces/Payment'
 import { cartReducer } from '../reducers/cart/reducer'
@@ -25,13 +25,29 @@ interface CartContextProviderProps {
 }
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
-  const [cart, dispatch] = useReducer(cartReducer, { cartItems: [] })
+  const [cart, dispatch] = useReducer(
+    cartReducer,
+    { cartItems: [] },
+    (initialState) => {
+      const storedStateAsJson = localStorage.getItem(
+        '@ignite-delivery-coffee:cart-1.0.0',
+      )
+      if (storedStateAsJson) return JSON.parse(storedStateAsJson)
+
+      return initialState
+    },
+  )
 
   const isCartWithItems = cart.cartItems.length > 0
   const isCartOpen = isCartWithItems
 
   const totalQuantityCartItems =
     cart?.cartItems.reduce((total, item) => total + item.quantity, 0) || 0
+
+  useEffect(() => {
+    const stateJSON = JSON.stringify(cart)
+    localStorage.setItem('@ignite-delivery-coffee:cart-1.0.0', stateJSON)
+  }, [cart])
 
   function getQuantityByCartItem(coffeeId: number) {
     const cartItem = cart.cartItems.find((i) => i.coffeeId === coffeeId)
