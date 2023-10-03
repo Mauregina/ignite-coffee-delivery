@@ -45,11 +45,13 @@ export const CoffeeItemSection = styled.section`
   align-items: center;
 
   strong {
+    display: block;
     font-family: 'Baloo 2', cursive;
     font-size: 1.25rem;
   }
 
   span {
+    display: block;
     font-size: 0.875rem;
     color: ${(props) => props.theme['base-label']};
     text-align: center;
