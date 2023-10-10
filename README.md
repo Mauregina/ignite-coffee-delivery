@@ -2,26 +2,27 @@
 
 # Sobre o desafio
 
-Nesse desafio, você vai desenvolver uma aplicação para gerenciar um carrinho de compras de uma cafeteria fictícia, que contém as seguintes funcionalidades:
+In this challenge, you will develop an application to manage a shopping cart for a fictional café. The application will have the following features:
 
-- Listagem de produtos (cafés) disponíveis para compra
-- Adicionar uma quantidade específicas de itens no carrinho
-- Aumentar ou remover a quantidade de itens no carrinho
-- Formulário para o usuário preencher o seu endereço
-- Exibir o total de itens no carrinho no Header
-- Exibir o valor total da soma de itens no carrinho multiplicados pelo valor
+- Listing of products (coffees) available for purchase.
+- Adding a specific quantity of items to the cart.
+- Increasing or decreasing the quantity of items in the cart.
+- A form for the user to fill out their address.
+- Displaying the total number of items in the cart in the Header.
+- Displaying the total value of the items in the cart, calculated by multiplying the quantity by the price.
 
-Para essa aplicação nós fornecemos um layout para que você possa seguir e implementar todas as funcionalidades desenhadas no figma. https://www.figma.com/file/5yT9ZzZmRQRS4yivGGB3pl/Coffee-Delivery/duplicate
+For this application, we provide a layout for you to follow and implement all the functionalities designed in Figma. You can access the layout here: 
+https://www.figma.com/file/5yT9ZzZmRQRS4yivGGB3pl/Coffee-Delivery/duplicate
 
-Conceitos praticados:
+Concepts Practiced:
 
-- Estados
-- ContextAPI
-- LocalStorage
-- Imutabilidade do estado
-- Listas e chaves no ReactJS
-- Propriedades
-- Componentização
+- States: Managing application state.
+- ContextAPI: Using React Context API for state management.
+- LocalStorage: Storing data in the browser's localStorage.
+- Immutability of state: Ensuring that state is not mutated directly but updated immutably.
+- Lists and keys in ReactJS: Rendering lists of items and using keys to uniquely identify them.
+- Props: Passing data and behavior between components through props.
+- Componentization: Breaking the UI into reusable and modular components for better maintainability and reusability.
 
 <p float="left">
  <img src="https://github.com/Mauregina/ignite-coffee-delivery/blob/master/public/prototipo1.png" width="800" />
