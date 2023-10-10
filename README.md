@@ -1,6 +1,6 @@
 # React + TypeScript + Vite
 
-# Sobre o desafio
+# About the challenge
 
 In this challenge, you will develop an application to manage a shopping cart for a fictional café. The application will have the following features:
 
