@@ -42,6 +42,7 @@ const checkoutFormValidationSchema = zod.object({
   city: zod.string().min(1),
   state: zod
     .string()
+    .transform((state) => state.toUpperCase())
     .refine(
       (value) =>
         [
@@ -71,7 +72,7 @@ const checkoutFormValidationSchema = zod.object({
           'SE',
           'SP',
           'TO',
-        ].includes(value.toUpperCase()),
+        ].includes(value),
       {
         message: 'UF inválida',
       },
